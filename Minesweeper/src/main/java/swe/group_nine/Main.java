@@ -1,21 +1,16 @@
 package swe.group_nine;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import swe.group_nine.view.GameView;
 
 public class Main extends Application {
+    public GameView view = new GameView();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        view.show( primaryStage );
     }
-
 
     public static void main(String[] args) {
         launch(args);
