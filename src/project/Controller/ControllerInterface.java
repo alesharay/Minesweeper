@@ -5,5 +5,5 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 
-public interface Controller {
+public interface ControllerInterface {
 }
