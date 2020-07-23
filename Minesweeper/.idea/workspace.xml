@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minesweeper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Minesweeper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swe/group_nine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swe/group_nine/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swe/group_nine/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swe/group_nine/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swe/group_nine/model/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swe/group_nine/model/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swe/group_nine/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swe/group_nine/view/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/View.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +58,8 @@
       <list>
         <option value="module-info" />
         <option value="JUnit3 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -109,6 +105,9 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="swe.group_nine.controller" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="swe.group_nine.model" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="swe.group_nine.controller" />
     </key>
@@ -122,7 +121,7 @@
       <recent name="C:\MyStuff\School\Current Courses\CS_4398-SWE_Project\Project\Minesweeper\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -274,30 +273,46 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="765" y="270" key="#com.intellij.ide.util.MemberChooser" timestamp="1595510309612">
+      <screen x="0" y="48" width="1920" height="1032" />
+    </state>
+    <state x="765" y="270" key="#com.intellij.ide.util.MemberChooser/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595510309612" />
+    <state x="690" y="339" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1595509936710">
+      <screen x="0" y="48" width="1920" height="1032" />
+    </state>
+    <state x="690" y="339" key="#com.intellij.ide.util.PackageChooserDialog/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595509936710" />
     <state x="743" y="432" width="548" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1595454091936">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
     <state x="743" y="432" width="548" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595454091936" />
+    <state x="565" y="48" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1595527083215">
+      <screen x="0" y="48" width="1920" height="1032" />
+    </state>
+    <state x="565" y="48" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595527083215" />
+    <state x="690" y="310" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595510366255">
+      <screen x="0" y="48" width="1920" height="1032" />
+    </state>
+    <state x="690" y="310" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595510366255" />
     <state x="690" y="318" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1595453517204">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
     <state x="690" y="318" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595453517204" />
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1595456076092">
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom" timestamp="1595527178368">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595456076092" />
-    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1595456076090">
+    <state width="1877" height="271" key="GridCell.Tab.0.bottom/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595527178368" />
+    <state width="1877" height="271" key="GridCell.Tab.0.center" timestamp="1595527178367">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.center/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595456076090" />
-    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1595456076090">
+    <state width="1877" height="271" key="GridCell.Tab.0.center/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595527178367" />
+    <state width="1877" height="271" key="GridCell.Tab.0.left" timestamp="1595527178367">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.left/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595456076090" />
-    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1595456076092">
+    <state width="1877" height="271" key="GridCell.Tab.0.left/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595527178367" />
+    <state width="1877" height="271" key="GridCell.Tab.0.right" timestamp="1595527178368">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
-    <state width="1877" height="271" key="GridCell.Tab.0.right/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595456076092" />
+    <state width="1877" height="271" key="GridCell.Tab.0.right/-1920.48.1920.1032/1920.40.1280.680/0.48.1920.1032@0.48.1920.1032" timestamp="1595527178368" />
     <state x="440" y="138" key="SettingsEditor" timestamp="1595453535976">
       <screen x="0" y="48" width="1920" height="1032" />
     </state>
