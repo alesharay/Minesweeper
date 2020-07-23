@@ -25,7 +25,7 @@
 - [ ] Show which mine reveal lost the game
 - [ ] Show the game timer (as it counts up) 
 
-### Controller
+### project.Controller.Controller
 - [ ] Button to choose a particular mine
 - [ ] Button to restart the game
 - [ ] Button to pause the game (optional)
