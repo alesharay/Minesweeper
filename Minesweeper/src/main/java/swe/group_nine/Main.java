@@ -5,11 +5,12 @@ import javafx.stage.Stage;
 import swe.group_nine.view.GameView;
 
 public class Main extends Application {
-    public GameView view = new GameView();
+    public GameView view;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        view.show( primaryStage );
+        view = new GameView( primaryStage );
+        view.show();
     }
 
     public static void main(String[] args) {
