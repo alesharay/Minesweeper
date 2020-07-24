@@ -18,8 +18,8 @@ public class GameController extends AbstractController {
     public void startGame() {}
 
     public void resetGame() {}
-
-    public boolean gameOver() {
+    
+		public boolean gameOver() {
         return gameWon || gameLost;
     }
 }

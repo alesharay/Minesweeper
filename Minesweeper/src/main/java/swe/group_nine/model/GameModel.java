@@ -45,10 +45,12 @@ public class GameModel extends AbstractModel {
             for (int j = 0; j < cols; j++) {
                 ArrayList<Square> neighbors = new ArrayList<>();
                 Square square = grid[i][j];
+
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 1; y++) {
                         int nbX = square.getLocation()[0] + x;
                         int nbY = square.getLocation()[1] + y;
+
                         boolean nbXInRange = (nbX >= 0) && (nbX < rows);
                         boolean nbYInRange = (nbY >= 0) && (nbY < rows);
 
