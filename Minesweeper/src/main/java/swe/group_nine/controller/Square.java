@@ -24,25 +24,41 @@ public class Square extends Button {
         this.setOnAction(e -> reveal());
     }
 
-    public void addNeighbor(Square neighbor) {
-        neighbors.add(neighbor);
-        if(neighbor.hasMine()) neighborMineCount++;
+    public void setNeighbors(ArrayList neighbors) {
+        this.neighbors = neighbors;
+
+        for(Square neighbor : this.neighbors) {
+            if(neighbor.hasMine()) neighborMineCount++;
+        }
     }
+
+    public int getNeighborMineCount() { return neighborMineCount; }
 
     public int[] getLocation() { return new int[]{locX, locY}; }
 
     public boolean hasMine() {return isMine; }
 
     public void reveal() {
-        if(isMine) { setText("MINE"); }
-        else { setText("-"); }
+        if(isMine) {
+            setText("MINE");
+            this.setStyle("-fx-background-color: red; -fx-text-fill: white");
+            this.setDisable(true);
+        }
+        else {
+            this.setText("-");
+            this.setDisable(true);
+        }
 
-//        for(Square neighbor : neighbors) {
-//            if( neighbor.isMine) { }
-//            else {
-//                if( neighborMineCount == 0 ) this.setText("-");
-//                else this.setText(String.valueOf(neighborMineCount));
-//            }
-//        }
+        for(Square neighbor : neighbors) {
+            if(!neighbor.hasMine()) {
+                if( neighbor.getNeighborMineCount() == 0 ) {
+                    neighbor.setText("-");
+                    neighbor.setDisable(true);
+                } else {
+                    neighbor.setText(String.valueOf(neighbor.getNeighborMineCount()));
+                    neighbor.setDisable(true);
+                }
+            }
+        }
     }
 }
