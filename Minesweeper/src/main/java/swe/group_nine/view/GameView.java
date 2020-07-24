@@ -25,7 +25,7 @@ public class GameView {
     public GameView(Stage primaryStage) throws IOException {
         // Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
         this.model = new GameModel();
-        this.controller = new GameController();
+        this.controller = new GameController(this.model);
         this.primaryStage = primaryStage;
 
         this.gridPane = new GridPane();
@@ -59,7 +59,7 @@ public class GameView {
         }
     }
 
-    public Stage getStage() { return primaryStage; }
+    public GameController getController() { return controller; }
 
     public void show() throws IOException {
         primaryStage.show();

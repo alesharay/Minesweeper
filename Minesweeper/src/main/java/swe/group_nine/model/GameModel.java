@@ -33,7 +33,7 @@ public class GameModel extends AbstractModel {
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
-                grid[x][y] = new Square(x, y, (Math.random() < .2));
+                grid[x][y] = new Square(x, y, (Math.random() < .2), grid.length);
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
             }
         }
