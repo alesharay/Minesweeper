@@ -35,27 +35,6 @@ public class GameModel extends AbstractModel {
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
             }
         }
-        setNeighbors();
-    }
-
-    public void setNeighbors() {
-        for(Square[] row : grid) {
-            for(Square square : row) {
-
-                for(int x = -1; x <= 1; x++) {
-                    for(int y = -1; y <= 1; y++) {
-                        int neibX = square.getLocation()[0] + x;
-                        int neibY = square.getLocation()[1] + y;
-
-                        boolean neighborWithinRange =
-                                (neibX >= 0) && (neibX < grid.length) &&
-                                        (neibY >= 0) && (neibY < grid.length);
-
-                        if(neighborWithinRange) square.addNeighbor(grid[neibX][neibY]);
-                    }
-                }
-            }
-        }
     }
 
     public Square[][] getGrid() { return grid; }
@@ -65,4 +44,8 @@ public class GameModel extends AbstractModel {
     public int getRows() { return this.rows; }
 
     public int getCols() { return this.cols; }
+
+    public int getWIDTH() { return this.WIDTH; }
+
+    public int getHEIGHT() { return  this.HEIGHT; }
 }

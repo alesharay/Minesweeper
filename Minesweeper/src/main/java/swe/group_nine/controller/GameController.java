@@ -1,6 +1,12 @@
 package swe.group_nine.controller;
 
+import swe.group_nine.model.GameModel;
+import swe.group_nine.view.GameView;
+
 public class GameController extends AbstractController {
+    GameView view;
+    GameModel model;
+
     boolean gameWon;
     boolean gameLost;
 
@@ -13,7 +19,9 @@ public class GameController extends AbstractController {
 
     public void resetGame() {}
 
-    public void chooseSquare() {}
+    public void chooseSquare() {
+
+    }
 
     private void update(){}
 

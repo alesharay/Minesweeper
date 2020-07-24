@@ -1,6 +1,7 @@
 package swe.group_nine.view;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -22,12 +23,12 @@ public class GameView {
 
     public GameView(Stage primaryStage) throws IOException {
         // Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
-        model = new GameModel();
-        controller = new GameController();
-
+        this.model = new GameModel();
+        this.controller = new GameController();
         this.primaryStage = primaryStage;
 
         this.gridPane = new GridPane();
+        this.gridPane.setAlignment(Pos.CENTER);
         this.gridPaneInitialized = true;
         setGridPane();
 
@@ -53,7 +54,7 @@ public class GameView {
         else if( !gridPaneInitialized) { throw new IllegalStateException("GridPane Not NotInitialized!"); }
         else {
             primaryStage.setTitle("Minesweeper");
-            primaryStage.setScene(new Scene(gridPane));
+            primaryStage.setScene(new Scene(gridPane, model.getWIDTH(), model.getHEIGHT()));
         }
     }
 

@@ -7,20 +7,21 @@ import swe.group_nine.model.GameModel;
 import java.util.ArrayList;
 
 public class Square extends Button {
-    ArrayList<Square> neighbors;
-    int locX;
-    int locY;
-    boolean isMine;
-    boolean isRevealed;
-    int neighborMineCount;
+    private int locX;
+    private int locY;
+    private boolean isMine;
+    private boolean isRevealed;
+    private ArrayList<Square> neighbors;
+    private int neighborMineCount;
 
     public Square(int locX, int locY, boolean isMine) {
-        this.neighbors = new ArrayList<>();
         this.locX = locX;
         this.locY = locY;
         this.isMine = isMine;
         this.isRevealed = false;
+        this.neighbors = new ArrayList<>();
         this.neighborMineCount = 0;
+        this.setOnAction(e -> reveal());
     }
 
     public void addNeighbor(Square neighbor) {
@@ -36,16 +37,12 @@ public class Square extends Button {
         if(isMine) { setText("MINE"); }
         else { setText("-"); }
 
-        for(Square neighbor : neighbors) {
-            if( neighbor.isMine) { }
-            else {
-                if( neighborMineCount == 0 ) this.setText("-");
-                else this.setText(String.valueOf(neighborMineCount));
-            }
-        }
-    }
-
-    public String toString() {
-        return super.toString();
+//        for(Square neighbor : neighbors) {
+//            if( neighbor.isMine) { }
+//            else {
+//                if( neighborMineCount == 0 ) this.setText("-");
+//                else this.setText(String.valueOf(neighborMineCount));
+//            }
+//        }
     }
 }
