@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import swe.group_nine.controller.GameController;
+import swe.group_nine.controller.Square;
 import swe.group_nine.model.GameModel;
 
 import java.io.IOException;
@@ -41,8 +42,8 @@ public class GameView {
         if( !model.gridIsSet()) { throw new IllegalStateException("Grid Not Set!"); }
         else if( !gridPaneInitialized) { throw new IllegalStateException("GridPane Not Initialized!"); }
         else {
-            for (int x = 0; x < model.getRows(); x++) {
-                for (int y = 0; y < model.getCols(); y++) {
+            for(int x = 0; x < model.getRows(); x++) {
+                for(int y = 0; y < model.getCols(); y++) {
                     gridPane.add(model.getGrid()[x][y], x, y);
                 }
             }

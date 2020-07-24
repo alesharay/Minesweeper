@@ -19,12 +19,6 @@ public class GameController extends AbstractController {
 
     public void resetGame() {}
 
-    public void chooseSquare() {
-
-    }
-
-    private void update(){}
-
     public boolean gameOver() {
         return gameWon || gameLost;
     }
