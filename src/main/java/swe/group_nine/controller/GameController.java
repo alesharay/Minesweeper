@@ -1,7 +1,9 @@
 package swe.group_nine.controller;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import swe.group_nine.model.GameModel;
 
@@ -25,8 +27,6 @@ public class GameController extends AbstractController {
 
         reset = new Button("reset");
         mineCount = new TextField();
-        timer = new TextField();
-
         revealedSquares = 0;
         gameWon = false;
 
@@ -47,12 +47,16 @@ public class GameController extends AbstractController {
 
     public TextField getMineCount() {
         mineCount = new TextField();
+        mineCount.setText(String.valueOf(model.getMineCount()));
+        mineCount.setAlignment(Pos.CENTER);
+        mineCount.setEditable(false);
         mineCount.setPrefSize(100, 20);
         return mineCount;
     }
 
     public TextField getTimer() {
         timer = new TextField();
+        timer.setEditable(false);
         timer.setPrefSize(100, 20);
         return timer;
     }
@@ -69,30 +73,11 @@ public class GameController extends AbstractController {
         }
     }
 
-
-//    public void reveal(Square square) {
-//        ArrayList<Square> neighbors = square.getNeighbors();
-//
-//        if(square.hasMine()) {
-//            square.setText("MINE");
-//            square.setStyle("-fx-background-color: red; -fx-text-fill: white");
-//            square.setDisable(true);
-//        }
-//        else if(square.getNeighborMineCount() > 0) {
-//            square.setText(String.valueOf(square.getNeighborMineCount()));
-//            square.setDisable(true); }
-//        else {
-//            for (Square neighbor : neighbors) {
-//                if (!neighbor.hasMine()) {
-//                    if (neighbor.getNeighborMineCount() == 0) {
-//
-//                        neighbor.setDisable(true);
-//                    } else {
-//                        neighbor.setText(String.valueOf(neighbor.getNeighborMineCount()));
-//                        neighbor.setDisable(true);
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public void gameOver() {
+        for(Square[] row : grid) {
+            for (Square square : row) {
+                square.disable();
+            }
+        }
+    }
 }

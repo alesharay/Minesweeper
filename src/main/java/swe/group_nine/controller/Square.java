@@ -7,13 +7,12 @@ import java.util.ArrayList;
 public class Square extends Button {
     private int locX;
     private int locY;
-    int gridSize;
+    private int gridSize;
+    private int neighborMineCount;
     private boolean isMine;
     private boolean revealed;
+    private boolean gameLost;
     private ArrayList<Square> neighbors;
-    private int neighborMineCount;
-
-
 
     public Square(int locX, int locY, boolean isMine, int gridSize) {
         this.locX = locX;
@@ -23,10 +22,11 @@ public class Square extends Button {
         this.neighbors = new ArrayList<>();
         this.neighborMineCount = 0;
         this.gridSize = gridSize;
+        this.gameLost = false;
         this.setOnAction(e -> reveal() );
     }
 
-    public void setNeighbors(ArrayList neighbors) {
+    public void setNeighbors(ArrayList<Square> neighbors) {
         this.neighbors = neighbors;
 
         for(Square neighbor : this.neighbors) {
@@ -34,7 +34,7 @@ public class Square extends Button {
         }
     }
 
-    public ArrayList getNeighbors() { return neighbors; }
+    public ArrayList<Square> getNeighbors() { return neighbors; }
 
     public int getNeighborMineCount() { return neighborMineCount; }
 
@@ -47,16 +47,35 @@ public class Square extends Button {
     public void reveal() {
         revealed = true;
         if(isMine) {
+            gameLost = true;
             setText("MINE");
-            this.setStyle("-fx-background-color: red; -fx-text-fill: white");
-            this.setDisable(true);
+            setStyle(
+                "-fx-background-color: red; " +
+                "-fx-text-fill: white;" +
+                "-fx-font-size: 10"
+            );
+            setDisable(true);
+            setOpacity(1);
         }
         else if(neighborMineCount > 0) {
-            this.setText(String.valueOf(neighborMineCount));
-            this.setDisable(true);
+            setText(String.valueOf(neighborMineCount));
+            setStyle(
+                "-fx-background-color: #fffbf2;" +
+                "-fx-border-color: #e6e6e6;" +
+                "-fx-border-width: .5 .5 .5 .5;" +
+                "-fx-text-fill: black"
+            );
+            setDisable(true);
+            setOpacity(1);
         }
         else if(neighborMineCount == 0) {
-            this.setDisable(true);
+            setStyle(
+                "-fx-background-color: #fffbf2;" +
+                "-fx-border-color: #e6e6e6;" +
+                "-fx-border-width: .5 .5 .5 .5"
+            );
+            setDisable(true);
+            setOpacity(1);
             notSureWhatToCallThisYet();
         }
     }
@@ -67,6 +86,11 @@ public class Square extends Button {
                 neighbor.reveal();
             }
         }
+    }
+
+    public void disable() {
+        setDisable(true);
+        setOpacity(1);
     }
 
     public void reset() {
