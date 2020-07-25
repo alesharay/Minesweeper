@@ -30,7 +30,6 @@ public class GameModel extends AbstractModel {
         setNeighbors();
     }
 
-    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
 
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
@@ -42,7 +41,6 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-    public int getMineCount(){ return this.mineCount; }
 
     public void setNeighbors() {
         for (int i = 0; i < rows; i++) {
@@ -79,4 +77,8 @@ public class GameModel extends AbstractModel {
     public int getWIDTH() { return this.WIDTH; }
 
     public int getHEIGHT() { return  this.HEIGHT; }
+
+    public int getMineCount(){ return this.mineCount; }
+
+    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
 }

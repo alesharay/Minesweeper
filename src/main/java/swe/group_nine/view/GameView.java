@@ -68,10 +68,11 @@ public class GameView {
 
     public void setHBoxPane() {
         setGridPane();
+        int spacing = (model.getWIDTH() / 10) + 20;
         this.HBox.setPadding(new Insets(15, 12, 15, 12));
         this.HBox.setAlignment(Pos.CENTER);
-        this.HBox.setSpacing(10);
-        this.HBox.setStyle("-fx-background-color: #A9A9A9;");
+        this.HBox.setSpacing(spacing);
+        this.HBox.setStyle("-fx-background-color: #696969;");
 
         TextField mineCount = new TextField();
         mineCount.setPrefSize(100, 20);
@@ -87,14 +88,10 @@ public class GameView {
     }
 
     public void setBorderPane() {
-
         setHBoxPane();
         this.borderPane.setTop(this.HBox);
-        //border.setLeft(addVBox());
-        //addStackPane(hbox);         // Add stack to HBox in top region
 
         borderPane.setCenter(this.gridPane);
-        //border.setRight(addFlowPane());
     }
 
     public void setStage() {
