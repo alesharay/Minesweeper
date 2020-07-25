@@ -15,6 +15,7 @@ public class GameModel extends AbstractModel {
     private int cols;
     private int SQUARE_SIZE;
     private Difficulty difficulty;
+    private int mineCount;
 
     public GameModel() throws IOException {
         this.SQUARE_SIZE = 50;
@@ -22,6 +23,7 @@ public class GameModel extends AbstractModel {
         this.HEIGHT = 500;
         this.rows = WIDTH / SQUARE_SIZE;
         this.cols = HEIGHT / SQUARE_SIZE;
+        this.mineCount = 0;
 
         grid = new Square[rows][cols];
         setGrid();
@@ -33,12 +35,14 @@ public class GameModel extends AbstractModel {
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
-                grid[x][y] = new Square(x, y, (Math.random() < .2), grid.length);
+                boolean isMine = Math.random() <.2;
+                grid[x][y] = new Square(x, y, isMine, grid.length);
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
+                if( isMine ) mineCount++;
             }
         }
     }
-
+    public int getMineCount(){ return this.mineCount; }
 
     public void setNeighbors() {
         for (int i = 0; i < rows; i++) {
