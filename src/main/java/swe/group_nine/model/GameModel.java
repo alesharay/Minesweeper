@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameModel extends AbstractModel {
-    Square[][] grid;
+    public static Square[][] grid;
 
 
     private int WIDTH;
@@ -66,8 +66,6 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-
-    public Square[][] getGrid() { return grid; }
 
     public boolean gridIsSet() { return grid != null; }
 

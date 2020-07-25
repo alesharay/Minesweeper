@@ -58,7 +58,7 @@ public class GameView {
         else {
             for(int x = 0; x < model.getRows(); x++) {
                 for(int y = 0; y < model.getCols(); y++) {
-                    gridPane.add(model.getGrid()[x][y], x, y);
+                    gridPane.add(GameModel.grid[x][y], x, y);
                 }
             }
         }

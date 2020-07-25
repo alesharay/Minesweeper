@@ -56,6 +56,8 @@ public class Square extends Button {
             );
             setDisable(true);
             setOpacity(1);
+            GameController.showAllMines(locX, locY);
+            GameController.gameOver();
         }
         else if(neighborMineCount > 0) {
             setText(String.valueOf(neighborMineCount));
@@ -100,6 +102,5 @@ public class Square extends Button {
         revealed = false;
         isMine = Math.random() <.2;
         neighborMineCount = 0;
-
     }
 }

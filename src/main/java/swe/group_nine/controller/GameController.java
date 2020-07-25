@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class GameController extends AbstractController {
     GameModel model;
-    Square[][] grid;
 
     Button reset;
     TextField mineCount;
@@ -23,7 +22,6 @@ public class GameController extends AbstractController {
 
     public GameController(GameModel model) {
         this.model = model;
-        grid = this.model.getGrid();
 
         reset = new Button("reset");
         mineCount = new TextField();
@@ -61,20 +59,28 @@ public class GameController extends AbstractController {
         return timer;
     }
 
-    private void showAllMines() {
-        for(Square[] row : grid) {
+    public static void showAllMines(int x, int y) {
+        for(Square[] row : GameModel.grid) {
             for(Square square : row) {
                 if(square.hasMine()) {
-                    square.setText("MINE");
-                    square.setStyle("-fx-background-color: red; -fx-text-fill: white");
-                    square.setDisable(true);
+                    boolean gameLosingSquare = square.getLocation()[0] == x &&
+                                                  square.getLocation()[1] == y;
+                    if(!gameLosingSquare) {
+                        square.setText("MINE");
+                        square.setStyle(
+                          "-fx-background-color: #fffbf2; " +
+                            "-fx-text-fill: black;" +
+                            "-fx-font-size: 10"
+                        );
+                        square.setDisable(true);
+                    }
                 }
             }
         }
     }
 
-    public void gameOver() {
-        for(Square[] row : grid) {
+    public static void gameOver() {
+        for(Square[] row : GameModel.grid) {
             for (Square square : row) {
                 square.disable();
             }
