@@ -68,31 +68,14 @@ public class Square extends Button {
             }
         }
     }
+
+    public void reset() {
+        setText("");
+        setStyle("");
+        setDisable(false);
+        revealed = false;
+        isMine = Math.random() <.2;
+        neighborMineCount = 0;
+
+    }
 }
-
-
-
-
-//    public void reveal() {
-//        if(isMine) {
-//            setText("MINE");
-//            this.setStyle("-fx-background-color: red; -fx-text-fill: white");
-//            this.setDisable(true);
-//        }
-//        else if(neighborMineCount > 0) {
-//            this.setText(String.valueOf(neighborMineCount));
-//            this.setDisable(true); }
-//        else {
-//            for (Square neighbor : neighbors) {
-//                if (!neighbor.hasMine()) {
-//                    if (neighbor.getNeighborMineCount() == 0) {
-//
-//                        neighbor.setDisable(true);
-//                    } else {
-//                        neighbor.setText(String.valueOf(neighbor.getNeighborMineCount()));
-//                        neighbor.setDisable(true);
-//                    }
-//                }
-//            }
-//        }
-//    }

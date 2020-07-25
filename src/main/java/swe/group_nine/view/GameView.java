@@ -3,8 +3,6 @@ package swe.group_nine.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -66,7 +64,7 @@ public class GameView {
         }
     }
 
-    public void setHBoxPane() {
+    public void setHBoxPane() throws IOException {
         setGridPane();
         int spacing = (model.getWIDTH() / 10) + 20;
         this.HBox.setPadding(new Insets(15, 12, 15, 12));
@@ -74,20 +72,12 @@ public class GameView {
         this.HBox.setSpacing(spacing);
         this.HBox.setStyle("-fx-background-color: #696969;");
 
-        TextField mineCount = new TextField();
-        mineCount.setPrefSize(100, 20);
-        HBox.getChildren().addAll(mineCount);
-
-        Button reset = new Button("Reset");
-        reset.setPrefSize(100, 20);
-        HBox.getChildren().addAll(reset);
-
-        TextField gameCounter = new TextField();
-        gameCounter.setPrefSize(100, 20);
-        HBox.getChildren().addAll(gameCounter);
+        HBox.getChildren().addAll(controller.getMineCount());
+        HBox.getChildren().addAll(controller.getReset());
+        HBox.getChildren().addAll(controller.getTimer());
     }
 
-    public void setBorderPane() {
+    public void setBorderPane() throws IOException {
         setHBoxPane();
         this.borderPane.setTop(this.HBox);
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class GameModel extends AbstractModel {
     Square[][] grid;
 
+
     private int WIDTH;
     private int HEIGHT;
     private int rows;
@@ -27,7 +28,7 @@ public class GameModel extends AbstractModel {
 
         grid = new Square[rows][cols];
         setGrid();
-        setNeighbors();
+        getNeighbors();
     }
 
 
@@ -42,7 +43,7 @@ public class GameModel extends AbstractModel {
         }
     }
 
-    public void setNeighbors() {
+    public void getNeighbors() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 ArrayList<Square> neighbors = new ArrayList<>();
@@ -81,4 +82,13 @@ public class GameModel extends AbstractModel {
     public int getMineCount(){ return this.mineCount; }
 
     public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
+
+    public void reset() throws IOException {
+        for(Square[] row : grid) {
+            for(Square square : row) {
+                square.reset();
+            }
+        }
+        getNeighbors();
+    }
 }

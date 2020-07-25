@@ -1,13 +1,19 @@
 package swe.group_nine.controller;
 
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import swe.group_nine.model.GameModel;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class GameController extends AbstractController {
     GameModel model;
     Square[][] grid;
+
+    Button reset;
+    TextField mineCount;
+    TextField timer;
 
     int revealedSquares;
     boolean gameWon;
@@ -17,13 +23,40 @@ public class GameController extends AbstractController {
         this.model = model;
         grid = this.model.getGrid();
 
+        reset = new Button("reset");
+        mineCount = new TextField();
+        timer = new TextField();
+
         revealedSquares = 0;
         gameWon = false;
 
     }
 
-    public void resetGame() {}
-    
+    public Button getReset() throws IOException {
+        reset = new Button("Reset");
+        reset.setPrefSize(100, 20);
+        reset.setOnAction(e -> {
+            try {
+                model.reset();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        return reset;
+    }
+
+    public TextField getMineCount() {
+        mineCount = new TextField();
+        mineCount.setPrefSize(100, 20);
+        return mineCount;
+    }
+
+    public TextField getTimer() {
+        timer = new TextField();
+        timer.setPrefSize(100, 20);
+        return timer;
+    }
+
     private void showAllMines() {
         for(Square[] row : grid) {
             for(Square square : row) {
@@ -35,6 +68,7 @@ public class GameController extends AbstractController {
             }
         }
     }
+
 
 //    public void reveal(Square square) {
 //        ArrayList<Square> neighbors = square.getNeighbors();
