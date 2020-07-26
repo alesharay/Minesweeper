@@ -20,7 +20,7 @@ public class Square extends Button {
     private boolean isMine;
     private boolean revealed;
     private ArrayList<Square> neighbors;
-
+    //TODO: add documentation for Square() method
     public Square(int locX, int locY, boolean isMine) {
         this.locX = locX;
         this.locY = locY;
@@ -31,7 +31,7 @@ public class Square extends Button {
         neighborMineCount = 0;
         setOnAction(e -> reveal() );
     }
-
+    //TODO: add documentation for setNeighbors() method
     public void setNeighbors(ArrayList<Square> neighbors) {
         this.neighbors = neighbors;
 
@@ -39,17 +39,17 @@ public class Square extends Button {
             if(neighbor.hasMine()) neighborMineCount++;
         }
     }
-
+    //TODO: add documentation for getNeighbors() method
     public ArrayList<Square> getNeighbors() { return neighbors; }
-
+    //TODO: add documentation for getNeighborMineCount() method
     public int getNeighborMineCount() { return neighborMineCount; }
-
+    //TODO: add documentation for getLocation() method
     public int[] getLocation() { return new int[]{locX, locY}; }
-
+    //TODO: add documentation for hasMine() method
     public boolean hasMine() { return isMine; }
-
+    //TODO: add documentation for isRevealed() method
     public boolean isRevealed() { return revealed; }
-
+    //TODO: add documentation for reveal() method
     public void reveal() {
         revealed = true;
         if(isMine) {
@@ -88,7 +88,8 @@ public class Square extends Button {
         }
 
     }
-
+    //TODO: change name of notSureWhatToCallThisYet()
+    //TODO: add documentation for notSureWhatTOCallThisYet() method
     public void notSureWhatToCallThisYet() {
         for(Square neighbor : neighbors) {
             if( !neighbor.hasMine() && !neighbor.isRevealed() ) {
@@ -96,12 +97,12 @@ public class Square extends Button {
             }
         }
     }
-
+    //TODO: add documentation for disable() method
     public void disable() {
         setDisable(true);
         setOpacity(1);
     }
-
+    //TODO: add documentation for reset() method
     public void reset() {
         setText("");
         setStyle("");
