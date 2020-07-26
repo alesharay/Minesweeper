@@ -1,15 +1,21 @@
 package swe.group_nine.model;
 
-import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The GameModel class implements the base logic and manipulates the data of the Minesweeper game.
+ *
+ * @author Alesha Ray
+ * @author Francisco Santos-Andujar
+ * @author Timothy Wood
+ *
+ */
 public class GameModel extends AbstractModel {
-    public static Square[][] grid;
-
-
     private int WIDTH;
     private int HEIGHT;
     private int rows;
@@ -18,25 +24,36 @@ public class GameModel extends AbstractModel {
     private Difficulty difficulty;
     private int mineCount;
 
-    public GameModel() throws IOException {
-        this.SQUARE_SIZE = 50;
-        this.WIDTH = 500;
-        this.HEIGHT = 500;
-        this.rows = WIDTH / SQUARE_SIZE;
-        this.cols = HEIGHT / SQUARE_SIZE;
-        this.mineCount = 0;
+    public static Square[][] grid;
+    public static int disabledSquareCount;
+    public static boolean gameOver;
+    public static boolean gameWon;
+    public static boolean gameLost;
+
+    public GameModel() {
+        SQUARE_SIZE = 50;
+        WIDTH = 500;
+        HEIGHT = 500;
+        rows = WIDTH / SQUARE_SIZE;
+        cols = HEIGHT / SQUARE_SIZE;
+        mineCount = 0;
+        disabledSquareCount = 0;
+        gameOver = false;
+        gameWon = false;
+        gameLost = false;
 
         grid = new Square[rows][cols];
         setGrid();
         getNeighbors();
     }
 
+    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
 
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
                 boolean isMine = Math.random() <.2;
-                grid[x][y] = new Square(x, y, isMine, grid.length);
+                grid[x][y] = new Square(x, y, isMine);
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
                 if( isMine ) mineCount++;
             }
@@ -79,8 +96,6 @@ public class GameModel extends AbstractModel {
 
     public int getMineCount(){ return this.mineCount; }
 
-    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
-
     public void reset() throws IOException {
         for(Square[] row : grid) {
             for(Square square : row) {
@@ -88,5 +103,19 @@ public class GameModel extends AbstractModel {
             }
         }
         getNeighbors();
+    }
+
+    /**
+     * Ends the game when either a mine is clicked or the game is won
+     */
+    public static void gameOver() {
+        gameOver = true;
+        for(Square[] row : GameModel.grid) {
+            for (Square square : row) {
+                square.disable();
+            }
+        }
+
+        if(!gameLost) { gameWon = true; }
     }
 }

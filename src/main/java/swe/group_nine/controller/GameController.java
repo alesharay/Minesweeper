@@ -1,48 +1,73 @@
 package swe.group_nine.controller;
 
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import swe.group_nine.model.GameModel;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
+/**
+ * The GameController class implements the control logic for the minesweeper game.
+ *
+ * @author Alesha Ray
+ * @author Francisco Santos-Andujar
+ * @author Timothy Wood
+ */
 public class GameController extends AbstractController {
-    GameModel model;
+    public static Button reset;
 
-    Button reset;
-    TextField mineCount;
-    TextField timer;
+    private PseudoClass empty;
+    private GameModel model;
+    private int revealedSquares;
+    private TextField mineCount;
+    private TextField timer;
 
-    int revealedSquares;
-    boolean gameWon;
-    boolean gameOver;
-
+    /**
+     * Constructor for the GameController class
+     * @param model the model for the current instance of the Minesweeper Game
+     */
     public GameController(GameModel model) {
         this.model = model;
 
         reset = new Button("reset");
         mineCount = new TextField();
         revealedSquares = 0;
-        gameWon = false;
-
+        empty = PseudoClass.getPseudoClass("empty");
     }
 
-    public Button getReset() throws IOException {
-        reset = new Button("Reset");
-        reset.setPrefSize(100, 20);
+    /**
+     * Returns the reset button for the Minesweeper Game
+     * @return the reset button for the minesweeper game
+     */
+    public Button getReset() {
+        InputStream input = getClass().getResourceAsStream("/happy.png");
+        Image image = new Image(input, 25, 25, true, true);
+        ImageView imageView = new ImageView(image);
+
+        reset = new Button();
+        reset.setGraphic(imageView);
         reset.setOnAction(e -> {
             try {
                 model.reset();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
             }
         });
         return reset;
     }
 
+    /**
+     * Returns the text field holding the total mine count for the current instance of the Minesweeper Game
+     * @return the text field holding the total mine count for the current instance of the Minesweeper game
+     */
     public TextField getMineCount() {
         mineCount = new TextField();
         mineCount.setText(String.valueOf(model.getMineCount()));
@@ -52,6 +77,10 @@ public class GameController extends AbstractController {
         return mineCount;
     }
 
+    /**
+     * Returns the text field holding the timer for the Minesweeper Game
+     * @return the text field holding the timer for the MInesweeper game
+     */
     public TextField getTimer() {
         timer = new TextField();
         timer.setEditable(false);
@@ -59,6 +88,11 @@ public class GameController extends AbstractController {
         return timer;
     }
 
+    /**
+     * Shows All mines when the game is lost by clicking on a mine
+     * @param x the X location of the currently clicked mine
+     * @param y the Y location of the currently clicked mine
+     */
     public static void showAllMines(int x, int y) {
         for(Square[] row : GameModel.grid) {
             for(Square square : row) {
@@ -75,14 +109,6 @@ public class GameController extends AbstractController {
                         square.setDisable(true);
                     }
                 }
-            }
-        }
-    }
-
-    public static void gameOver() {
-        for(Square[] row : GameModel.grid) {
-            for (Square square : row) {
-                square.disable();
             }
         }
     }

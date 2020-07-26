@@ -12,6 +12,14 @@ import swe.group_nine.model.GameModel;
 
 import java.io.IOException;
 
+/**
+ * The GameView class implements the logic allowing the Minesweeper game to be viewed properly.
+ *
+ * @author Alesha Ray
+ * @author Francisco Santos-Andujar
+ * @author Timothy Wood
+ *
+ */
 public class GameView {
     private GameModel model;
     private GameController controller;
@@ -28,7 +36,11 @@ public class GameView {
     private HBox HBox;
     private boolean HBoxInitialized;
 
-    public GameView(Stage primaryStage) throws IOException {
+    /**
+     * Constructor for the GameView class
+     * @param primaryStage the stage to which all javafx components will be added
+     */
+    public GameView(Stage primaryStage) {
         // Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
         this.model = new GameModel();
         this.controller = new GameController(this.model);
@@ -51,7 +63,9 @@ public class GameView {
     }
 
 
-
+    /**
+     * Sets the GridPane that the squares will be placed on
+     */
     public void setGridPane() {
         if( !model.gridIsSet()) { throw new IllegalStateException("Grid Not Set!"); }
         else if( !gridPaneInitialized) { throw new IllegalStateException("GridPane Not Initialized!"); }
@@ -64,7 +78,10 @@ public class GameView {
         }
     }
 
-    public void setHBoxPane() throws IOException {
+    /**
+     * Sets the HBoxPane for the Timer, Reset and Mine count
+     */
+    public void setHBoxPane() {
         setGridPane();
         int spacing = (model.getWIDTH() / 10) + 20;
         this.HBox.setPadding(new Insets(15, 12, 15, 12));
@@ -77,13 +94,19 @@ public class GameView {
         HBox.getChildren().addAll(controller.getTimer());
     }
 
-    public void setBorderPane() throws IOException {
+    /**
+     * Sets the BorderPane to allow for effortless layout
+     */
+    public void setBorderPane() {
         setHBoxPane();
         this.borderPane.setTop(this.HBox);
 
         borderPane.setCenter(this.gridPane);
     }
 
+    /**
+     * Sets the primary stage for the Minesweeper Game
+     */
     public void setStage() {
         if( !stageInitialized ) { throw new IllegalStateException("Stage Not Initialized!"); }
         else if( !gridPaneInitialized ) { throw new IllegalStateException("GridPane Not Initialized!"); }
@@ -94,9 +117,16 @@ public class GameView {
         }
     }
 
+    /**
+     * Gets the GameController for the current instance of the Minesweeper Game
+     * @return the controller for the current instance of the Minesweeper game
+     */
     public GameController getController() { return controller; }
 
-    public void show() throws IOException {
+    /**
+     * Show the primary stage of the Minesweeper Game
+     */
+    public void show() {
         primaryStage.show();
     }
 }

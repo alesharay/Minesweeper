@@ -1,35 +1,41 @@
 package swe.group_nine.controller;
 
 import javafx.scene.control.Button;
+import swe.group_nine.model.GameModel;
 
 import java.util.ArrayList;
 
+/**
+ * The Square class implements logic for the individual square of the Minesweeper game.
+ *
+ * @author Alesha Ray
+ * @author Francisco Santos-Andujar
+ * @author Timothy Wood
+ *
+ */
 public class Square extends Button {
     private int locX;
     private int locY;
-    private int gridSize;
     private int neighborMineCount;
     private boolean isMine;
     private boolean revealed;
-    private boolean gameLost;
     private ArrayList<Square> neighbors;
 
-    public Square(int locX, int locY, boolean isMine, int gridSize) {
+    public Square(int locX, int locY, boolean isMine) {
         this.locX = locX;
         this.locY = locY;
         this.isMine = isMine;
-        this.revealed = false;
-        this.neighbors = new ArrayList<>();
-        this.neighborMineCount = 0;
-        this.gridSize = gridSize;
-        this.gameLost = false;
-        this.setOnAction(e -> reveal() );
+
+        revealed = false;
+        neighbors = new ArrayList<>();
+        neighborMineCount = 0;
+        setOnAction(e -> reveal() );
     }
 
     public void setNeighbors(ArrayList<Square> neighbors) {
         this.neighbors = neighbors;
 
-        for(Square neighbor : this.neighbors) {
+        for(Square neighbor : neighbors) {
             if(neighbor.hasMine()) neighborMineCount++;
         }
     }
@@ -47,7 +53,6 @@ public class Square extends Button {
     public void reveal() {
         revealed = true;
         if(isMine) {
-            gameLost = true;
             setText("MINE");
             setStyle(
                 "-fx-background-color: red; " +
@@ -57,7 +62,8 @@ public class Square extends Button {
             setDisable(true);
             setOpacity(1);
             GameController.showAllMines(locX, locY);
-            GameController.gameOver();
+            GameModel.gameLost = true;
+            GameModel.gameOver();
         }
         else if(neighborMineCount > 0) {
             setText(String.valueOf(neighborMineCount));
@@ -80,6 +86,7 @@ public class Square extends Button {
             setOpacity(1);
             notSureWhatToCallThisYet();
         }
+
     }
 
     public void notSureWhatToCallThisYet() {
