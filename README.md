@@ -4,7 +4,7 @@
 
 ## To Do
 
-### project.Model.Model
+### Model
 - [ ] Array to identify all rows and columns of squares
 - [ ] A place to hold the **total** mine count on the board (random)
 - [ ] A place to hold the nearby mine count for each square
@@ -16,7 +16,7 @@
 - [ ] Check all consecutive empty squares and the surrounding mine counts when an empty square is revealed
 - [ ] Start the timer
 
-### project.View
+### View
 - [ ] Show the mine count on the board
 - [ ] Show the count of mines near a particular square after the square or a nearby empy space is revealed
 - [ ] Show all consecutive empty squares and the surrounding mine counts when an empty square is revealed
@@ -25,8 +25,7 @@
 - [ ] Show which mine reveal lost the game
 - [ ] Show the game timer (as it counts up) 
 
-### project.Controller.Controller
+### Controller
 - [ ] Button to choose a particular mine
 - [ ] Button to restart the game
 - [ ] Button to pause the game (optional)
-
