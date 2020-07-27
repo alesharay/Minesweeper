@@ -29,7 +29,7 @@ public class GameModel extends AbstractModel {
     public static boolean gameOver;
     public static boolean gameWon;
     public static boolean gameLost;
-
+    //TODO: add documentation for GameModel() method
     public GameModel() {
         SQUARE_SIZE = 50;
         WIDTH = 500;
@@ -46,9 +46,9 @@ public class GameModel extends AbstractModel {
         setGrid();
         getNeighbors();
     }
-
+    //TODO: add documentation for setDifficulty() method
     public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
-
+    //TODO: add documentation for setGrid() method
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
@@ -59,7 +59,7 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-
+    //TODO: add documentation for getNeighbors() method
     public void getNeighbors() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -83,19 +83,19 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-
+    //TODO: add documentation for gridIsSet() method
     public boolean gridIsSet() { return grid != null; }
-
+    //TODO: add documentation for getRows() method
     public int getRows() { return this.rows; }
-
+    //TODO: add documentation for getCols() method
     public int getCols() { return this.cols; }
-
+    //TODO: add documentation for getWIDTH() method
     public int getWIDTH() { return this.WIDTH; }
-
+    //TODO: add documentation for getHEIGHT() method
     public int getHEIGHT() { return  this.HEIGHT; }
-
+    //TODO: add documentation for getMineCount() method
     public int getMineCount(){ return this.mineCount; }
-
+    //TODO: add documentation for reset() method
     public void reset() throws IOException {
         for(Square[] row : grid) {
             for(Square square : row) {

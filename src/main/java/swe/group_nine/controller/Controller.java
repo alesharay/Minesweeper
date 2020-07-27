@@ -6,6 +6,4 @@ import swe.group_nine.view.View;
 public interface Controller {
     void setModel(Model model);
     Model getModel();
-    void setView(View view);
-    View getView();
 }
