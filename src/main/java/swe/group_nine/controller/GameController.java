@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import swe.group_nine.model.GameModel;
 
 import javafx.animation.KeyFrame;
@@ -95,14 +96,14 @@ public class GameController extends AbstractController {
    *
    * @return the text field holding the timer for the MInesweeper game
    */
-  public Label getTimer() {
+  public TextField getTimer() {
     Integer START = 0;// starting value for timer
     Timeline timeline; // timeline object
-    Label timerLabel = new Label();// creates label for holding timer
+    TextField timerLabel = new TextField();// creates label for holding timer
     IntegerProperty timeInSeconds = new SimpleIntegerProperty(START); // used for binding timer text
 
     timerLabel.textProperty().bind(timeInSeconds.asString());
-    timerLabel.setTextFill(Color.RED);
+    timerLabel.setAlignment(Pos.CENTER);
 
     timeInSeconds.set(START);
     timeline = new Timeline(); // create timeline object
