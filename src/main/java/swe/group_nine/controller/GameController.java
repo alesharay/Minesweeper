@@ -11,16 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import swe.group_nine.model.GameModel;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +29,7 @@ public class GameController extends AbstractController {
   private GameModel model;
   private int revealedSquares;
   private TextField mineCount;
-  private TextField timer;
+  private Timer timer;
 
   /**
    * Constructor for the GameController class
@@ -69,6 +59,7 @@ public class GameController extends AbstractController {
     reset.setGraphic(imageView);
     reset.setOnAction(e -> {
       try {
+        timer.start();
         model.reset();
       } catch (IOException ioe) {
         ioe.printStackTrace();
@@ -97,22 +88,9 @@ public class GameController extends AbstractController {
    * @return the text field holding the timer for the MInesweeper game
    */
   public TextField getTimer() {
-    Integer START = 0;// starting value for timer
-    Timeline timeline; // timeline object
-    TextField timerLabel = new TextField();// creates label for holding timer
-    IntegerProperty timeInSeconds = new SimpleIntegerProperty(START); // used for binding timer text
-
-    timerLabel.textProperty().bind(timeInSeconds.asString());
-    timerLabel.setAlignment(Pos.CENTER);
-
-    timeInSeconds.set(START);
-    timeline = new Timeline(); // create timeline object
-    timeline.getKeyFrames().add(
-            new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
-                    new KeyValue(timeInSeconds, 3600))); //start and end values
-    timeline.playFromStart(); // start animation
-
-    return timerLabel; //return the label
+    timer = new Timer();
+    timer.start();
+    return timer.getTimerLabel();
   }
 
   /**
