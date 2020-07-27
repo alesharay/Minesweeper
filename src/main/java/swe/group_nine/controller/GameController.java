@@ -10,6 +10,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import swe.group_nine.model.GameModel;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,11 +95,23 @@ public class GameController extends AbstractController {
    *
    * @return the text field holding the timer for the MInesweeper game
    */
-  public TextField getTimer() {
-    timer = new TextField();
-    timer.setEditable(false);
-    timer.setPrefSize(100, 20);
-    return timer;
+  public Label getTimer() {
+    Integer START = 0;// starting value for timer
+    Timeline timeline; // timeline object
+    Label timerLabel = new Label();// creates label for holding timer
+    IntegerProperty timeInSeconds = new SimpleIntegerProperty(START); // used for binding timer text
+
+    timerLabel.textProperty().bind(timeInSeconds.asString());
+    timerLabel.setTextFill(Color.RED);
+
+    timeInSeconds.set(START);
+    timeline = new Timeline(); // create timeline object
+    timeline.getKeyFrames().add(
+            new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
+                    new KeyValue(timeInSeconds, 3600))); //start and end values
+    timeline.playFromStart(); // start animation
+
+    return timerLabel; //return the label
   }
 
   /**
