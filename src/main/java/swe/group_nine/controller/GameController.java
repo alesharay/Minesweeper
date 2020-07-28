@@ -17,7 +17,7 @@ public class GameController extends AbstractController {
         gameWon = false;
         gameOver = false;
     }
-    
+
     public void resetGame() {}
     
     public static void showAllMines(int x, int y) {
