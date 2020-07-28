@@ -1,13 +1,9 @@
 package swe.group_nine.controller;
 
-import javafx.stage.Stage;
 import swe.group_nine.model.GameModel;
-
-import java.util.ArrayList;
 
 public class GameController extends AbstractController {
     GameModel model;
-    Square[][] grid;
 
     int revealedSquares;
     boolean gameWon;
@@ -15,23 +11,31 @@ public class GameController extends AbstractController {
 
     public GameController(GameModel model) {
         this.model = model;
-        grid = this.model.getGrid();
+        GameModel.grid = this.model.getGrid();
 
         revealedSquares = 0;
         gameWon = false;
-
+        gameOver = false;
     }
-
+    
     public void resetGame() {}
     
-    private void showAllMines() {
-        for(Square[] row : grid) {
+    public static void showAllMines(int x, int y) {
+        for(Square[] row : GameModel.grid) {
             for(Square square : row) {
                 if(square.hasMine()) {
                     square.setText("MINE");
                     square.setStyle("-fx-background-color: red; -fx-text-fill: white");
                     square.setDisable(true);
                 }
+            }
+        }
+    }
+
+    public static void gameOver() {
+        for(Square[] row : GameModel.grid) {
+            for (Square square : row) {
+                square.setDisable(true);
             }
         }
     }

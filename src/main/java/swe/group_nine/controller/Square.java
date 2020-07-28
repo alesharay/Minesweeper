@@ -50,13 +50,17 @@ public class Square extends Button {
             setText("MINE");
             this.setStyle("-fx-background-color: red; -fx-text-fill: white");
             this.setDisable(true);
+            setOpacity(1);
+            GameController.showAllMines(locX, locY);
         }
         else if(neighborMineCount > 0) {
             this.setText(String.valueOf(neighborMineCount));
             this.setDisable(true);
+            setOpacity(1);
         }
         else if(neighborMineCount == 0) {
             this.setDisable(true);
+            setOpacity(1);
             notSureWhatToCallThisYet();
         }
     }

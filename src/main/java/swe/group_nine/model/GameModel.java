@@ -1,13 +1,12 @@
 package swe.group_nine.model;
 
-import javafx.stage.Stage;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameModel extends AbstractModel {
-    Square[][] grid;
+    public static Square[][] grid;
 
     private int WIDTH;
     private int HEIGHT;
