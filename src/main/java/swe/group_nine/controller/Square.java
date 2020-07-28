@@ -144,6 +144,7 @@ public class Square extends Button {
     public void reset() {
         setText("");
         setStyle("");
+        setGraphic(null);
         setDisable(false);
         revealed = false;
         isMine = Math.random() < .2;
