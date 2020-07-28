@@ -113,7 +113,7 @@ public class Square extends Button {
         } else if (e.getButton() == MouseButton.SECONDARY) {
             if (!flagged) {
                 InputStream input = getClass().getResourceAsStream("/flag.png");
-                Image image = new Image(input, 25, 25, true, true);
+                Image image = new Image(input, 30, 30, true, true);
                 ImageView imageView = new ImageView(image);
                 setGraphic(imageView);
                 flagged = true;
