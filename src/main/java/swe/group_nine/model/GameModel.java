@@ -1,7 +1,5 @@
 package swe.group_nine.model;
 
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
@@ -30,6 +28,9 @@ public class GameModel extends AbstractModel {
     public static boolean gameWon;
     public static boolean gameLost;
 
+    /**
+     * Constructor of the GameModel class
+     */
     public GameModel() {
         SQUARE_SIZE = 50;
         WIDTH = 500;
@@ -47,8 +48,15 @@ public class GameModel extends AbstractModel {
         getNeighbors();
     }
 
+    /**
+     * Sets the selected difficulty level for the game
+     * @param difficulty selected difficulty level for the game
+     */
     public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
 
+    /**
+     * Sets up the grid for the game and assigns the amount of mines on the board
+     */
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
@@ -60,6 +68,9 @@ public class GameModel extends AbstractModel {
         }
     }
 
+    /**
+     * Gets all the neighbors adjacent to the square in a 3X3 area
+     */
     public void getNeighbors() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -86,16 +97,36 @@ public class GameModel extends AbstractModel {
 
     public boolean gridIsSet() { return grid != null; }
 
+    /**
+     * Returns the number of rows
+     * @return the number of rows
+     */
     public int getRows() { return this.rows; }
 
+    /**
+     * Returns the number of columns
+     * @return the number of columns
+     */
     public int getCols() { return this.cols; }
 
+    /**
+     * Returns the width of the board
+     * @return the width of the board
+     */
     public int getWIDTH() { return this.WIDTH; }
 
+    /**
+     * Returns the height of the board
+     * @return the height of the board
+     */
     public int getHEIGHT() { return  this.HEIGHT; }
 
     public int getMineCount(){ return this.mineCount; }
 
+    /**
+     * Resets the entire grid/game when called
+     * @throws IOException exception if there is an IO error
+     */
     public void reset() throws IOException {
         for(Square[] row : grid) {
             for(Square square : row) {

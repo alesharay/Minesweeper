@@ -1,6 +1,5 @@
 package swe.group_nine.controller;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +26,13 @@ public class Square extends Button {
     private boolean flagged;
     private ArrayList<Square> neighbors;
 
-    //TODO: add documentation for Square() method
+    /**
+     * Constructor for the Square class.
+     *
+     * @param locX the x location of the square
+     * @param locY the y location of the square
+     * @param isMine The parameter that determines whether the square is a mine
+     */
     public Square(int locX, int locY, boolean isMine) {
         this.locX = locX;
         this.locY = locY;
@@ -40,7 +45,12 @@ public class Square extends Button {
         setOnMouseClicked(e -> reveal(e));
     }
 
-    //TODO: add documentation for setNeighbors() method
+    /**
+     * Function that reads input of the neighbors and determines the mine count of each
+     * neighbor.
+     *
+     * @param neighbors the array list of neighbors nearby the square
+     */
     public void setNeighbors(ArrayList<Square> neighbors) {
         this.neighbors = neighbors;
 
@@ -49,32 +59,50 @@ public class Square extends Button {
         }
     }
 
-    //TODO: add documentation for getNeighbors() method
+    /**
+     * Returns the neighbors of the square
+     * @return the neighbors of the square
+     */
     public ArrayList<Square> getNeighbors() {
         return neighbors;
     }
 
-    //TODO: add documentation for getNeighborMineCount() method
+    /**
+     * Returns the mine count of the neighbors
+     * @return the mine count of the neighbors
+     */
     public int getNeighborMineCount() {
         return neighborMineCount;
     }
 
-    //TODO: add documentation for getLocation() method
+    /**
+     * Returns the location of the square
+     * @return the location of the square
+     */
     public int[] getLocation() {
         return new int[]{locX, locY};
     }
 
-    //TODO: add documentation for hasMine() method
+    /**
+     * Returns the bool value of whether the square is a mine
+     * @return the bool value of whether the square is a mine
+     */
     public boolean hasMine() {
         return isMine;
     }
 
-    //TODO: add documentation for isRevealed() method
+    /**
+     * Returns the bool value of whether the square is revealed
+     * @return the bool value of whether the square is revealed
+     */
     public boolean isRevealed() {
         return revealed;
     }
 
-    //TODO: add documentation for reveal() method
+    /**
+     * Receives the mouse input to reveal the square or set a flag to it
+     * @param e the primary or secondary input of the mouse
+     */
     public void reveal(MouseEvent e) {
         if (e.getButton() == MouseButton.PRIMARY) {
             revealed = true;
@@ -108,7 +136,7 @@ public class Square extends Button {
                 );
                 setDisable(true);
                 setOpacity(1);
-                notSureWhatToCallThisYet(e);
+                neighborReveal(e);
             }
         } else if (e.getButton() == MouseButton.SECONDARY) {
             if (!flagged) {
@@ -124,9 +152,12 @@ public class Square extends Button {
         }
     }
 
-    //TODO: change name of notSureWhatToCallThisYet()
-    //TODO: add documentation for notSureWhatTOCallThisYet() method
-    public void notSureWhatToCallThisYet(MouseEvent e) {
+    /**
+     * Recursive function that reveals all the neighbors within a 3x3 area of the square
+     * if the neighbor is not a mine and is not revealed
+     * @param e mouse input for revealing the square
+     */
+    public void neighborReveal(MouseEvent e) {
         for (Square neighbor : neighbors) {
             if (!neighbor.hasMine() && !neighbor.isRevealed()) {
                 neighbor.reveal(e);
@@ -134,13 +165,17 @@ public class Square extends Button {
         }
     }
 
-    //TODO: add documentation for disable() method
+    /**
+     * Disable the square calling the function.
+     */
     public void disable() {
         setDisable(true);
         setOpacity(1);
     }
 
-    //TODO: add documentation for reset() method
+    /**
+     * Resets the square calling the function.
+     */
     public void reset() {
         setText("");
         setStyle("");
