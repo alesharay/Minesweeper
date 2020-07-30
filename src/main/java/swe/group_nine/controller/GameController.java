@@ -1,17 +1,13 @@
 package swe.group_nine.controller;
 
 import javafx.css.PseudoClass;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import swe.group_nine.model.GameModel;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -81,7 +77,6 @@ public class GameController extends AbstractController {
 
   /**
    * Returns the text field holding the timer for the Minesweeper Game
-   *
    * @return the text field holding the timer for the MInesweeper game
    */
   public TextField getTimer() {
