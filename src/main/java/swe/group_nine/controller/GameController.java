@@ -21,11 +21,11 @@ import java.io.InputStream;
 public class GameController extends AbstractController {
     public static Button reset;
 
-    private PseudoClass empty;
-    private GameModel model;
-    private int revealedSquares;
-    private TextField mineCount;
-    private TextField timer;
+  private PseudoClass empty;
+  private GameModel model;
+  private int revealedSquares;
+  private TextField mineCount;
+  private Timer timer;
 
     /**
      * Constructor for the GameController class
@@ -49,17 +49,18 @@ public class GameController extends AbstractController {
         Image image = new Image(input, 25, 25, true, true);
         ImageView imageView = new ImageView(image);
 
-        reset = new Button();
-        reset.setGraphic(imageView);
-        reset.setOnAction(e -> {
-            try {
-                model.reset();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-        });
-        return reset;
-    }
+    reset = new Button();
+    reset.setGraphic(imageView);
+    reset.setOnAction(e -> {
+      try {
+        timer.start();
+        model.reset();
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+    });
+    return reset;
+  }
 
     /**
      * Returns the text field holding the total mine count for the current instance of the Minesweeper Game
@@ -74,16 +75,15 @@ public class GameController extends AbstractController {
         return mineCount;
     }
 
-    /**
-     * Returns the text field holding the timer for the Minesweeper Game
-     * @return the text field holding the timer for the MInesweeper game
-     */
-    public TextField getTimer() {
-        timer = new TextField();
-        timer.setEditable(false);
-        timer.setPrefSize(100, 20);
-        return timer;
-    }
+  /**
+   * Returns the text field holding the timer for the Minesweeper Game
+   * @return the text field holding the timer for the MInesweeper game
+   */
+  public TextField getTimer() {
+    timer = new Timer();
+    timer.start();
+    return timer.getTimerLabel();
+  }
 
     /**
      * Shows All mines when the game is lost by clicking on a mine
