@@ -76,8 +76,8 @@ public class GameController extends AbstractController {
     }
 
   /**
-   * Returns the text field holding the timer for the Minesweeper Game
-   * @return the text field holding the timer for the MInesweeper game
+   * Returns the text field holding the timer for the Minesweeper game
+   * @return the text field holding the timer for the Minesweeper game
    */
   public TextField getTimer() {
     timer = new Timer();
@@ -94,17 +94,28 @@ public class GameController extends AbstractController {
         for(Square[] row : GameModel.grid) {
             for(Square square : row) {
                 if(square.hasMine()) {
-                    boolean gameLosingSquare = square.getLocation()[0] == x &&
-                                                  square.getLocation()[1] == y;
-                    if(!gameLosingSquare) {
-                        square.setText("MINE");
-                        square.setStyle(
-                          "-fx-background-color: #fffbf2; " +
-                            "-fx-text-fill: black;" +
-                            "-fx-font-size: 10"
-                        );
-                        square.setDisable(true);
+                    if(!square.isFlagged()) {
+                        boolean gameLosingSquare = square.getLocation()[0] == x &&
+                                square.getLocation()[1] == y;
+                        if (!gameLosingSquare) {
+                            square.setText("MINE");
+                            square.setStyle(
+                                    "-fx-background-color: #fffbf2;" +
+                                            "-fx-text-fill: black;" +
+                                            "-fx-font-size: 10"
+                            );
+                            square.setDisable(true);
+                        }
                     }
+                } else if(square.isFlagged()) {
+                    square.setGraphic(null);
+                    square.setText("X");
+                    square.setStyle(
+                            "-fx-text-size: 10;" +
+                            "-fx-text-fill: red;" +
+                            "-fx-text-bold: true"
+                    );
+                    square.setDisable(true);
                 }
             }
         }
