@@ -1,6 +1,5 @@
 package swe.group_nine.controller;
 
-import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,11 +20,9 @@ import java.io.InputStream;
 public class GameController extends AbstractController {
     public static Button reset;
 
-  private PseudoClass empty;
-  private GameModel model;
-  private int revealedSquares;
-  private TextField mineCount;
-  private Timer timer;
+    private GameModel model;
+    private TextField mineCount;
+    private Timer timer;
 
     /**
      * Constructor for the GameController class
@@ -36,8 +33,6 @@ public class GameController extends AbstractController {
 
         reset = new Button("reset");
         mineCount = new TextField();
-        revealedSquares = 0;
-        empty = PseudoClass.getPseudoClass("empty");
     }
 
     /**
@@ -49,17 +44,17 @@ public class GameController extends AbstractController {
         Image image = new Image(input, 25, 25, true, true);
         ImageView imageView = new ImageView(image);
 
-    reset = new Button();
-    reset.setGraphic(imageView);
-    reset.setOnAction(e -> {
-      try {
-        timer.start();
-        model.reset();
-      } catch (IOException ioe) {
-        ioe.printStackTrace();
-      }
-    });
-    return reset;
+        reset = new Button();
+        reset.setGraphic(imageView);
+        reset.setOnAction(e -> {
+          try {
+            timer.start();
+            model.reset();
+          } catch (IOException ioe) {
+            ioe.printStackTrace();
+          }
+        });
+        return reset;
   }
 
     /**
