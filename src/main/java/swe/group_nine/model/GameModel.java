@@ -1,7 +1,5 @@
 package swe.group_nine.model;
 
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
@@ -29,7 +27,10 @@ public class GameModel extends AbstractModel {
     public static boolean gameOver;
     public static boolean gameWon;
     public static boolean gameLost;
-    //TODO: add documentation for GameModel() method
+
+    /**
+     * Constructor of the GameModel class
+     */
     public GameModel() {
         SQUARE_SIZE = 50;
         WIDTH = 500;
@@ -46,9 +47,16 @@ public class GameModel extends AbstractModel {
         setGrid();
         getNeighbors();
     }
-    //TODO: add documentation for setDifficulty() method
+
+    /**
+     * Sets the selected difficulty level for the game
+     * @param difficulty selected difficulty level for the game
+     */
     public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
-    //TODO: add documentation for setGrid() method
+
+    /**
+     * Sets up the grid for the game and assigns the amount of mines on the board
+     */
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
@@ -59,7 +67,10 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-    //TODO: add documentation for getNeighbors() method
+
+    /**
+     * Gets all the neighbors adjacent to the square in a 3X3 area
+     */
     public void getNeighbors() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -83,19 +94,39 @@ public class GameModel extends AbstractModel {
             }
         }
     }
-    //TODO: add documentation for gridIsSet() method
+
     public boolean gridIsSet() { return grid != null; }
-    //TODO: add documentation for getRows() method
+
+    /**
+     * Returns the number of rows
+     * @return the number of rows
+     */
     public int getRows() { return this.rows; }
-    //TODO: add documentation for getCols() method
+
+    /**
+     * Returns the number of columns
+     * @return the number of columns
+     */
     public int getCols() { return this.cols; }
-    //TODO: add documentation for getWIDTH() method
+
+    /**
+     * Returns the width of the board
+     * @return the width of the board
+     */
     public int getWIDTH() { return this.WIDTH; }
-    //TODO: add documentation for getHEIGHT() method
+
+    /**
+     * Returns the height of the board
+     * @return the height of the board
+     */
     public int getHEIGHT() { return  this.HEIGHT; }
-    //TODO: add documentation for getMineCount() method
+
     public int getMineCount(){ return this.mineCount; }
-    //TODO: add documentation for reset() method
+
+    /**
+     * Resets the entire grid/game when called
+     * @throws IOException exception if there is an IO error
+     */
     public void reset() throws IOException {
         for(Square[] row : grid) {
             for(Square square : row) {

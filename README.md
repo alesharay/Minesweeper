@@ -23,7 +23,7 @@
 - [ ] Show the location of all mines (if game lost) or flags (if game won)
 - [ ] Change the color of the nearby mine count as the number grows
 - [ ] Show which mine reveal lost the game
-- [ ] Show the game timer (as it counts up) 
+- [ ] Show the game timer (as it counts up)
 
 ### Controller
 - [ ] Button to choose a particular mine
