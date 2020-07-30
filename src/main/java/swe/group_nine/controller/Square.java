@@ -84,16 +84,16 @@ public class Square extends Button {
     }
 
     /**
-     * Returns the bool value of whether the square is a mine
-     * @return the bool value of whether the square is a mine
+     * Returns true when the square is a mine, false otherwise
+     * @return true when the square is a mine, false otherwise
      */
     public boolean hasMine() {
         return isMine;
     }
 
     /**
-     * Returns the bool value of whether the square is revealed
-     * @return the bool value of whether the square is revealed
+     * Returns true when the square is revealed, false otherwise
+     * @return true when the square is revealed, false otherwise
      */
     public boolean isRevealed() {
         return revealed;
