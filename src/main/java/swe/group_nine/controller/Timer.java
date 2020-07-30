@@ -20,6 +20,7 @@ public class Timer {
         timeInSeconds = new SimpleIntegerProperty(START); // used for binding timer text
 
         timerLabel.textProperty().bind(timeInSeconds.asString());
+        timerLabel.setPrefSize(100, 20);
         timerLabel.setAlignment(Pos.CENTER);
     }
 
