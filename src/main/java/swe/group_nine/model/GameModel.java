@@ -1,5 +1,6 @@
 package swe.group_nine.model;
 
+import swe.group_nine.controller.GameController;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
@@ -154,7 +155,7 @@ public class GameModel extends AbstractModel {
                 square.disable();
             }
         }
-
+        GameController.timer.stop();
         if(!gameLost) { gameWon = true; }
     }
 }
