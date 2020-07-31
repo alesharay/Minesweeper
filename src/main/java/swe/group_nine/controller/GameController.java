@@ -22,7 +22,7 @@ public class GameController extends AbstractController {
 
     private GameModel model;
     private TextField mineCount;
-    private Timer timer;
+    public static Timer timer;
 
     /**
      * Constructor for the GameController class

@@ -120,6 +120,7 @@ public class Square extends Button {
                                     "-fx-text-fill: white;" +
                                     "-fx-font-size: 10"
                     );
+                    GameController.timer.stop();
                     setDisable(true);
                     setOpacity(1);
                     GameController.showAllMines(locX, locY);
