@@ -95,6 +95,10 @@ public class GameModel extends AbstractModel {
         }
     }
 
+    /**
+     * Returns true if the grid has values; otherwise, false if the grid is null
+     * @return true if the grid has values; otherwise, false if the grid is null
+     */
     public boolean gridIsSet() { return grid != null; }
 
     /**
@@ -121,6 +125,10 @@ public class GameModel extends AbstractModel {
      */
     public int getHEIGHT() { return  this.HEIGHT; }
 
+    /**
+     * Returns the count of mines on the board
+     * @return the count of mines on the board
+     */
     public int getMineCount(){ return this.mineCount; }
 
     /**

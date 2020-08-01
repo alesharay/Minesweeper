@@ -84,20 +84,26 @@ public class Square extends Button {
     }
 
     /**
-     * Returns true when the square is a mine, false otherwise
-     * @return true when the square is a mine, false otherwise
+     * Returns true if the square is a mine; false otherwise
+     * @return true if the square is a mine; false otherwise
      */
     public boolean hasMine() {
         return isMine;
     }
 
     /**
-     * Returns true when the square is revealed, false otherwise
-     * @return true when the square is revealed, false otherwise
+     * Returns true if the square has been revealed; false otherwise
+     * @return true if the square has been revealed; false otherwise
      */
     public boolean isRevealed() {
         return revealed;
     }
+
+    /**
+     * Returns true if the square contains a flag; false otherwise
+     * @return true if the square contains a flag; false otherwise
+     */
+    public boolean isFlagged() { return flagged; }
 
     /**
      * Receives the mouse input to reveal the square or set a flag to it
@@ -107,36 +113,43 @@ public class Square extends Button {
         if (e.getButton() == MouseButton.PRIMARY) {
             revealed = true;
             if (isMine) {
-                setText("MINE");
-                setStyle(
-                        "-fx-background-color: red; " +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-size: 10"
-                );
-                setDisable(true);
-                setOpacity(1);
-                GameController.showAllMines(locX, locY);
-                GameModel.gameLost = true;
-                GameModel.gameOver();
+                if(!flagged) {
+                    setText("MINE");
+                    setStyle(
+                            "-fx-background-color: red; " +
+                                    "-fx-text-fill: white;" +
+                                    "-fx-font-size: 10"
+                    );
+                    GameController.timer.stop();
+                    setDisable(true);
+                    setOpacity(1);
+                    GameController.showAllMines(locX, locY);
+                    GameModel.gameLost = true;
+                    GameModel.gameOver();
+                }
             } else if (neighborMineCount > 0) {
-                setText(String.valueOf(neighborMineCount));
-                setStyle(
-                        "-fx-background-color: #fffbf2;" +
-                        "-fx-border-color: #e6e6e6;" +
-                        "-fx-border-width: .5 .5 .5 .5;" +
-                        "-fx-text-fill: black"
-                );
-                setDisable(true);
-                setOpacity(1);
+                if(!flagged) {
+                    setText(String.valueOf(neighborMineCount));
+                    setStyle(
+                            "-fx-background-color: #fffbf2;" +
+                                    "-fx-border-color: #e6e6e6;" +
+                                    "-fx-border-width: .5 .5 .5 .5;" +
+                                    "-fx-text-fill: black"
+                    );
+                    setDisable(true);
+                    setOpacity(1);
+                }
             } else if (neighborMineCount == 0) {
-                setStyle(
-                        "-fx-background-color: #fffbf2;" +
-                        "-fx-border-color: #e6e6e6;" +
-                        "-fx-border-width: .5 .5 .5 .5"
-                );
-                setDisable(true);
-                setOpacity(1);
-                neighborReveal(e);
+                if(!flagged) {
+                    setStyle(
+                            "-fx-background-color: #fffbf2;" +
+                                    "-fx-border-color: #e6e6e6;" +
+                                    "-fx-border-width: .5 .5 .5 .5"
+                    );
+                    setDisable(true);
+                    setOpacity(1);
+                    neighborReveal(e);
+                }
             }
         } else if (e.getButton() == MouseButton.SECONDARY) {
             if (!flagged) {
@@ -182,6 +195,7 @@ public class Square extends Button {
         setGraphic(null);
         setDisable(false);
         revealed = false;
+        flagged = false;
         isMine = Math.random() < .2;
         neighborMineCount = 0;
     }
