@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 import swe.group_nine.controller.GameController;
 import swe.group_nine.model.GameModel;
 
-import java.io.IOException;
-
 /**
  * The GameView class implements the logic allowing the Minesweeper game to be viewed properly.
  *
@@ -89,7 +87,7 @@ public class GameView {
         this.HBox.setSpacing(spacing);
         this.HBox.setStyle("-fx-background-color: #696969;");
 
-        HBox.getChildren().addAll(controller.getMineCount());
+        HBox.getChildren().addAll(controller.getMineCountField());
         HBox.getChildren().addAll(controller.getReset());
         HBox.getChildren().addAll(controller.getTimer());
     }

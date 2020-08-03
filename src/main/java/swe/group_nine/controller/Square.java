@@ -26,6 +26,8 @@ public class Square extends Button {
     private boolean flagged;
     private ArrayList<Square> neighbors;
 
+    public static int revealedCount;
+
     /**
      * Constructor for the Square class.
      *
@@ -42,7 +44,8 @@ public class Square extends Button {
         flagged = false;
         neighbors = new ArrayList<>();
         neighborMineCount = 0;
-        setOnMouseClicked(e -> reveal(e));
+        revealedCount = 0;
+        setOnMouseClicked(this::reveal);
     }
 
     /**
@@ -57,22 +60,6 @@ public class Square extends Button {
         for (Square neighbor : neighbors) {
             if (neighbor.hasMine()) neighborMineCount++;
         }
-    }
-
-    /**
-     * Returns the neighbors of the square
-     * @return the neighbors of the square
-     */
-    public ArrayList<Square> getNeighbors() {
-        return neighbors;
-    }
-
-    /**
-     * Returns the mine count of the neighbors
-     * @return the mine count of the neighbors
-     */
-    public int getNeighborMineCount() {
-        return neighborMineCount;
     }
 
     /**
@@ -110,30 +97,36 @@ public class Square extends Button {
      * @param e the primary or secondary input of the mouse
      */
     public void reveal(MouseEvent e) {
+        int gameSize = GameModel.grid.length*GameModel.grid.length;
+        if(revealedCount == (gameSize-GameModel.mineCount)) {
+            GameModel.gameOver(locX, locY);
+        }
+
         if (e.getButton() == MouseButton.PRIMARY) {
             revealed = true;
+            revealedCount++;
+
             if (isMine) {
                 if(!flagged) {
                     setText("MINE");
                     setStyle(
                             "-fx-background-color: red; " +
-                                    "-fx-text-fill: white;" +
-                                    "-fx-font-size: 10"
+                            "-fx-text-fill: white;" +
+                            "-fx-font-size: 10"
                     );
                     setDisable(true);
                     setOpacity(1);
-                    GameController.showAllMines(locX, locY);
                     GameModel.gameLost = true;
-                    GameModel.gameOver();
+                    GameModel.gameOver(locX, locY);
                 }
             } else if (neighborMineCount > 0) {
                 if(!flagged) {
                     setText(String.valueOf(neighborMineCount));
                     setStyle(
                             "-fx-background-color: #fffbf2;" +
-                                    "-fx-border-color: #e6e6e6;" +
-                                    "-fx-border-width: .5 .5 .5 .5;" +
-                                    "-fx-text-fill: black"
+                            "-fx-border-color: #e6e6e6;" +
+                            "-fx-border-width: .5 .5 .5 .5;" +
+                            "-fx-text-fill: black"
                     );
                     setDisable(true);
                     setOpacity(1);
@@ -142,8 +135,8 @@ public class Square extends Button {
                 if(!flagged) {
                     setStyle(
                             "-fx-background-color: #fffbf2;" +
-                                    "-fx-border-color: #e6e6e6;" +
-                                    "-fx-border-width: .5 .5 .5 .5"
+                            "-fx-border-color: #e6e6e6;" +
+                            "-fx-border-width: .5 .5 .5 .5"
                     );
                     setDisable(true);
                     setOpacity(1);
@@ -197,5 +190,6 @@ public class Square extends Button {
         flagged = false;
         isMine = Math.random() < .2;
         neighborMineCount = 0;
+        revealedCount = 0;
     }
 }

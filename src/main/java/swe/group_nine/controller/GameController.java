@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import swe.group_nine.model.GameModel;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -40,19 +39,16 @@ public class GameController extends AbstractController {
      * @return the reset button for the minesweeper game
      */
     public Button getReset() {
-        InputStream input = getClass().getResourceAsStream("/happy.png");
-        Image image = new Image(input, 25, 25, true, true);
+        InputStream input = getClass().getResourceAsStream("/straight.png");
+        Image image = new Image(input, 30, 30, true, true);
         ImageView imageView = new ImageView(image);
 
         reset = new Button();
         reset.setGraphic(imageView);
         reset.setOnAction(e -> {
-          try {
-            timer.start();
-            model.reset();
-          } catch (IOException ioe) {
-            ioe.printStackTrace();
-          }
+          timer.start();
+          model.reset();
+          mineCount.setText(String.valueOf(model.getMineCount()));
         });
         return reset;
   }
@@ -61,13 +57,13 @@ public class GameController extends AbstractController {
      * Returns the text field holding the total mine count for the current instance of the Minesweeper Game
      * @return the text field holding the total mine count for the current instance of the Minesweeper game
      */
-    public TextField getMineCount() {
-        mineCount = new TextField();
-        mineCount.setText(String.valueOf(model.getMineCount()));
-        mineCount.setAlignment(Pos.CENTER);
-        mineCount.setEditable(false);
-        mineCount.setPrefSize(100, 20);
-        return mineCount;
+    public TextField getMineCountField() {
+      mineCount = new TextField();
+      mineCount.setText(String.valueOf(model.getMineCount()));
+      mineCount.setAlignment(Pos.CENTER);
+      mineCount.setEditable(false);
+      mineCount.setPrefSize(100, 20);
+      return mineCount;
     }
 
   /**

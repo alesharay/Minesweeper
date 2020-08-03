@@ -3,7 +3,6 @@ package swe.group_nine.model;
 import swe.group_nine.controller.GameController;
 import swe.group_nine.controller.Square;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -21,9 +20,9 @@ public class GameModel extends AbstractModel {
     private int cols;
     private int SQUARE_SIZE;
     private Difficulty difficulty;
-    private int mineCount;
 
     public static Square[][] grid;
+    public static int mineCount;
     public static int disabledSquareCount;
     public static boolean gameOver;
     public static boolean gameWon;
@@ -130,16 +129,17 @@ public class GameModel extends AbstractModel {
      * Returns the count of mines on the board
      * @return the count of mines on the board
      */
-    public int getMineCount(){ return this.mineCount; }
+    public int getMineCount(){ return mineCount; }
 
     /**
      * Resets the entire grid/game when called
-     * @throws IOException exception if there is an IO error
      */
-    public void reset() throws IOException {
+    public void reset() {
+        mineCount = 0;
         for(Square[] row : grid) {
             for(Square square : row) {
                 square.reset();
+                if(square.hasMine()) { mineCount++; }
             }
         }
         getNeighbors();
@@ -148,7 +148,7 @@ public class GameModel extends AbstractModel {
     /**
      * Ends the game when either a mine is clicked or the game is won
      */
-    public static void gameOver() {
+    public static void gameOver(int locX, int locY) {
         gameOver = true;
         for(Square[] row : GameModel.grid) {
             for (Square square : row) {
@@ -157,5 +157,6 @@ public class GameModel extends AbstractModel {
         }
         GameController.timer.stop();
         if(!gameLost) { gameWon = true; }
+        else { GameController.showAllMines(locX, locY); }
     }
 }
