@@ -26,7 +26,6 @@ public class GameView implements View {
     private boolean stageInitialized;
 
     private BorderPane borderPane;
-    private boolean borderPaneInitialized;
 
     private GridPane gridPane;
     private boolean gridPaneInitialized;
@@ -39,7 +38,6 @@ public class GameView implements View {
      * @param primaryStage the stage to which all javafx components will be added
      */
     public GameView(Stage primaryStage) {
-        // Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
         this.model = new GameModel();
         this.controller = new GameController(this.model);
         this.primaryStage = primaryStage;
@@ -52,15 +50,12 @@ public class GameView implements View {
         this.HBoxInitialized = true;
 
         this.borderPane = new BorderPane();
-        this.borderPaneInitialized = true;
         setBorderPane();
 
         this.primaryStage = primaryStage;
         this.stageInitialized = true;
         initStage();
     }
-
-
 
     /**
      * Sets the GridPane that the squares will be placed on
