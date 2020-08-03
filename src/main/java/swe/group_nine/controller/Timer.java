@@ -32,6 +32,10 @@ public class Timer {
         timeline.playFromStart(); // start animation
     }
 
+    public void stop() {
+        timeline.stop();
+    }
+
     public TextField getTimerLabel() {
         return timerLabel; //return the label
     }

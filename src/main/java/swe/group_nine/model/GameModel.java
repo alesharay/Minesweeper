@@ -2,6 +2,7 @@ package swe.group_nine.model;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import swe.group_nine.controller.GameController;
 import swe.group_nine.controller.Square;
 
 import java.io.IOException;
@@ -110,6 +111,7 @@ public class GameModel extends AbstractModel {
      */
     public static void gameOver() {
         gameOver = true;
+        GameController.timer.stop();
         for(Square[] row : GameModel.grid) {
             for (Square square : row) {
                 square.disable();
