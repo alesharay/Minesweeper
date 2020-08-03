@@ -21,21 +21,19 @@ import java.io.InputStream;
  * @author Timothy Wood
  */
 public class GameController extends AbstractController {
-    public static Button reset;
-
     private GameModel model;
     private TextField mineCount;
-    public static Timer timer;
+    private ObservableList<Difficulty> diffOptions;
 
-    ObservableList<Difficulty> diffOptions;
-    ComboBox diffDropDown;
+    public static Button reset;
+    public static Timer timer;
+    public static ComboBox diffDropDown;
 
     /**
      * Constructor for the GameController class
-     * @param model the model for the current instance of the Minesweeper Game
      */
-    public GameController(GameModel model) {
-        this.model = model;
+    public GameController() {
+        this.model = new GameModel();
 
         reset = new Button("reset");
         mineCount = new TextField();
@@ -44,7 +42,31 @@ public class GameController extends AbstractController {
         diffDropDown = new ComboBox(diffOptions);
     }
 
-    public ComboBox getDiffDropDown() { return diffDropDown; }
+    // private helper method to set the difficulty from the drop down
+    private void setDiffHelper() {
+        switch ((Difficulty)diffDropDown.getValue()) {
+            case EASY:
+                model.setDifficulty(Difficulty.EASY);
+                break;
+            case MEDIUM:
+                model.setDifficulty(Difficulty.MEDIUM);
+                break;
+            case HARD:
+                model.setDifficulty(Difficulty.HARD);
+                break;
+        }
+    }
+
+    /**
+     * Returns the difficulty drop down selection
+     * @return the difficulty drop down selection
+     */
+    public ComboBox getDiffDropDown() {
+        diffDropDown.setOnAction(e -> {
+            setDiffHelper();
+        });
+        return diffDropDown;
+    }
 
     /**
      * Returns the reset button for the Minesweeper Game
@@ -123,4 +145,7 @@ public class GameController extends AbstractController {
             }
         }
     }
+
+    @Override
+    public GameModel getModel() { return model; }
 }

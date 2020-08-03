@@ -78,7 +78,25 @@ public class AbstractModel implements Model {
      * @param difficulty the difficulty of the minesweeper game
      */
     @Override
-    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
+    public void setDifficulty(Difficulty difficulty) {
+        if(difficulty == null) { difficulty = Difficulty.EASY; }
+
+        switch (difficulty) {
+            case MEDIUM:
+                WIDTH = 750;
+                HEIGHT = 750;
+                break;
+            case HARD:
+                WIDTH = 1000;
+                HEIGHT = 1000;
+                break;
+            default:
+            case EASY:
+                WIDTH = 500;
+                HEIGHT = 500;
+                break;
+        }
+    }
 
     /**
      * Returns the difficulty of the Minesweeper game

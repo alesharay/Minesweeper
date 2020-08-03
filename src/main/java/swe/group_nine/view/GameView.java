@@ -38,10 +38,8 @@ public class GameView implements View {
      * @param primaryStage the stage to which all javafx components will be added
      */
     public GameView(Stage primaryStage) {
-
-
-        this.model = new GameModel(null);
-        this.controller = new GameController(this.model);
+        this.controller = new GameController();
+        this.model = controller.getModel();
         this.primaryStage = primaryStage;
 
         this.gridPane = new GridPane();
