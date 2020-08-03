@@ -18,7 +18,7 @@ import swe.group_nine.model.GameModel;
  * @author Timothy Wood
  *
  */
-public class GameView {
+public class GameView implements View {
     private GameModel model;
     private GameController controller;
 
@@ -57,8 +57,9 @@ public class GameView {
 
         this.primaryStage = primaryStage;
         this.stageInitialized = true;
-        setStage();
+        initStage();
     }
+
 
 
     /**
@@ -105,7 +106,7 @@ public class GameView {
     /**
      * Sets the primary stage for the Minesweeper Game
      */
-    public void setStage() {
+    public void initStage() {
         if( !stageInitialized ) { throw new IllegalStateException("Stage Not Initialized!"); }
         else if( !gridPaneInitialized ) { throw new IllegalStateException("GridPane Not Initialized!"); }
         else if( !HBoxInitialized) { throw new IllegalStateException("HBoxPane not Initialized!"); }
@@ -116,15 +117,52 @@ public class GameView {
     }
 
     /**
-     * Gets the GameController for the current instance of the Minesweeper Game
-     * @return the controller for the current instance of the Minesweeper game
-     */
-    public GameController getController() { return controller; }
-
-    /**
      * Show the primary stage of the Minesweeper Game
      */
+    @Override
     public void show() {
         primaryStage.show();
     }
+
+    /**
+     * Sets the primary stage for the current instance of the Minesweeper game
+     * @param primaryStage the primary stage for the current instance of the Minesweeper game
+     */
+    @Override
+    public void setStage(Stage primaryStage) { this.primaryStage = primaryStage; }
+
+    /**
+     * Returns the primary stage for the current instance of the Minesweeper game
+     * @return the primary stage for the current instance of the Minesweeper game
+     */
+    @Override
+    public Stage getStage() { return primaryStage; }
+
+    /**
+     * Sets the model for the current instance of the Minesweeper game
+     * @param model the model for the current instance of the Minesweeper game
+     */
+    @Override
+    public void setModel(GameModel model) { this.model = model; }
+
+    /**
+     * Gets the model for the current instance of the Minesweeper game
+     * @return the model for the current instance of the Minesweeper game
+     */
+    @Override
+    public GameModel getModel() { return model; }
+
+    /**
+     * Sets the controller for the current instance of the Minesweeper game
+     * @param controller the controller for the current instance of the Minesweeper game
+     */
+    @Override
+    public void setController(GameController controller) { this.controller = controller; }
+
+    /**
+     * Gets the controller for the current instance of the Minesweeper game
+     * @return the controller for the current instance of the Minesweeper game
+     */
+    @Override
+    public GameController getController() { return controller; }
 }

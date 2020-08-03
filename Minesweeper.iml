@@ -7,12 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="14" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="org.assertj:assertj-core:3.16.1" level="application" />
     <orderEntry type="library" name="javafx-14" level="application" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.testfx:testfx-junit:4.0.15-alpha" level="application" />
-    <orderEntry type="library" scope="TEST" name="junit5.6" level="application" />
+    <orderEntry type="library" scope="TEST" name="org.testfx:testfx-junit5:4.0.16-alpha" level="application" />
   </component>
 </module>
