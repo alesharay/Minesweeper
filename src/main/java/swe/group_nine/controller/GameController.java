@@ -1,10 +1,14 @@
 package swe.group_nine.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import swe.group_nine.model.Difficulty;
 import swe.group_nine.model.GameModel;
 
 import java.io.InputStream;
@@ -23,6 +27,9 @@ public class GameController extends AbstractController {
     private TextField mineCount;
     public static Timer timer;
 
+    ObservableList<Difficulty> diffOptions;
+    ComboBox diffDropDown;
+
     /**
      * Constructor for the GameController class
      * @param model the model for the current instance of the Minesweeper Game
@@ -32,7 +39,12 @@ public class GameController extends AbstractController {
 
         reset = new Button("reset");
         mineCount = new TextField();
+
+        diffOptions = FXCollections.observableArrayList(Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD);
+        diffDropDown = new ComboBox(diffOptions);
     }
+
+    public ComboBox getDiffDropDown() { return diffDropDown; }
 
     /**
      * Returns the reset button for the Minesweeper Game
@@ -48,7 +60,7 @@ public class GameController extends AbstractController {
         reset.setOnAction(e -> {
           timer.start();
           model.reset();
-          mineCount.setText(String.valueOf(model.getMineCount()));
+          mineCount.setText(String.valueOf(model.mineCount));
         });
         return reset;
   }
@@ -59,7 +71,7 @@ public class GameController extends AbstractController {
      */
     public TextField getMineCountField() {
       mineCount = new TextField();
-      mineCount.setText(String.valueOf(model.getMineCount()));
+      mineCount.setText(String.valueOf(model.mineCount));
       mineCount.setAlignment(Pos.CENTER);
       mineCount.setEditable(false);
       mineCount.setPrefSize(100, 20);

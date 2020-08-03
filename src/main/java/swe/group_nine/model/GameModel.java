@@ -14,13 +14,6 @@ import java.util.ArrayList;
  *
  */
 public class GameModel extends AbstractModel {
-    private int WIDTH;
-    private int HEIGHT;
-    private int rows;
-    private int cols;
-    private int SQUARE_SIZE;
-    private Difficulty difficulty;
-
     public static Square[][] grid;
     public static int mineCount;
     public static int disabledSquareCount;
@@ -31,10 +24,9 @@ public class GameModel extends AbstractModel {
     /**
      * Constructor of the GameModel class
      */
-    public GameModel() {
+    public GameModel(Difficulty difficulty) {
         SQUARE_SIZE = 50;
-        WIDTH = 500;
-        HEIGHT = 500;
+        setDifficulty(difficulty);
         rows = WIDTH / SQUARE_SIZE;
         cols = HEIGHT / SQUARE_SIZE;
         mineCount = 0;
@@ -48,11 +40,26 @@ public class GameModel extends AbstractModel {
         getNeighbors();
     }
 
-    /**
-     * Sets the selected difficulty level for the game
-     * @param difficulty selected difficulty level for the game
-     */
-    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
+    @Override
+    public void setDifficulty(Difficulty difficulty) {
+        if(difficulty == null) { difficulty = Difficulty.EASY; }
+
+        switch (difficulty) {
+            case MEDIUM:
+                WIDTH = 750;
+                HEIGHT = 750;
+                break;
+            case HARD:
+                WIDTH = 1000;
+                HEIGHT = 1000;
+                break;
+            default:
+            case EASY:
+                WIDTH = 500;
+                HEIGHT = 500;
+                break;
+        }
+    }
 
     /**
      * Sets up the grid for the game and assigns the amount of mines on the board
@@ -100,36 +107,6 @@ public class GameModel extends AbstractModel {
      * @return true if the grid has values; otherwise, false if the grid is null
      */
     public boolean gridIsSet() { return grid != null; }
-
-    /**
-     * Returns the number of rows
-     * @return the number of rows
-     */
-    public int getRows() { return this.rows; }
-
-    /**
-     * Returns the number of columns
-     * @return the number of columns
-     */
-    public int getCols() { return this.cols; }
-
-    /**
-     * Returns the width of the board
-     * @return the width of the board
-     */
-    public int getWIDTH() { return this.WIDTH; }
-
-    /**
-     * Returns the height of the board
-     * @return the height of the board
-     */
-    public int getHEIGHT() { return  this.HEIGHT; }
-
-    /**
-     * Returns the count of mines on the board
-     * @return the count of mines on the board
-     */
-    public int getMineCount(){ return mineCount; }
 
     /**
      * Resets the entire grid/game when called

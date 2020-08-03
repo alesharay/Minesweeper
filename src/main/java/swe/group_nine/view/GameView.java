@@ -38,7 +38,9 @@ public class GameView implements View {
      * @param primaryStage the stage to which all javafx components will be added
      */
     public GameView(Stage primaryStage) {
-        this.model = new GameModel();
+
+
+        this.model = new GameModel(null);
         this.controller = new GameController(this.model);
         this.primaryStage = primaryStage;
 
@@ -84,6 +86,7 @@ public class GameView implements View {
         this.HBox.setStyle("-fx-background-color: #696969;");
 
         HBox.getChildren().addAll(controller.getMineCountField());
+        HBox.getChildren().addAll(controller.getDiffDropDown());
         HBox.getChildren().addAll(controller.getReset());
         HBox.getChildren().addAll(controller.getTimer());
     }
