@@ -37,7 +37,7 @@ public class GameView extends AbstractView {
         controller = new GameController(Difficulty.EASY);
         model = controller.getModel();
 
-        controller.getDiffDropDown().setOnAction(e -> setDifficutly());
+        controller.getDiffDropDown().setOnAction(e -> setDifficulty());
 
         gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -53,23 +53,22 @@ public class GameView extends AbstractView {
         initStage();
     }
 
-    public void setDifficutly() {
+    public void setDifficulty() {
         Difficulty difficulty = controller.getDiffDropDown().getValue();
 
-        switch(difficulty) {
-            case HARD:
+        switch (difficulty) {
+            case HARD -> {
                 model.setDifficulty(Difficulty.HARD);
                 restart(Difficulty.HARD);
-                break;
-            case MEDIUM:
+            }
+            case MEDIUM -> {
                 model.setDifficulty(Difficulty.MEDIUM);
                 restart(Difficulty.MEDIUM);
-                break;
-            case EASY:
-            default:
+            }
+            default -> {
                 model.setDifficulty(Difficulty.EASY);
                 restart(Difficulty.EASY);
-                break;
+            }
         }
     }
 
@@ -143,7 +142,7 @@ public class GameView extends AbstractView {
     public void restart(Difficulty difficulty) {
         controller = new GameController(difficulty);
         model = controller.getModel();
-        controller.getDiffDropDown().setOnAction(e -> setDifficutly());
+        controller.getDiffDropDown().setOnAction(e -> setDifficulty());
 
         this.gridPane = new GridPane();
         this.gridPane.setAlignment(Pos.CENTER);

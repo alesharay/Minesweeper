@@ -37,12 +37,6 @@ public abstract class AbstractModel implements Model {
     public int getCols() { return this.cols; }
 
     /**
-     * Sets the width of the grid window
-     * @param WIDTH the width of the grid window
-     */
-    public void setWIDTH(int WIDTH) { this.WIDTH = WIDTH; }
-
-    /**
      * Returns the width of the board
      * @return the width of the board
      */
@@ -61,12 +55,6 @@ public abstract class AbstractModel implements Model {
      */
     @Override
     public int getHEIGHT() { return this.HEIGHT; }
-
-    /**
-     * Sets the size of the squares on the grid
-     * @param SQUARE_SIZE this size of the squares on the grid
-     */
-    public void setSQUARE_SIZE(int SQUARE_SIZE) { this.SQUARE_SIZE = SQUARE_SIZE; }
 
     /**
      * Returns the size of the squares on the board
@@ -96,19 +84,18 @@ public abstract class AbstractModel implements Model {
         if(difficulty == null) { difficulty = Difficulty.EASY; }
 
         switch (difficulty) {
-            case HARD:
+            case HARD -> {
                 this.difficulty = Difficulty.HARD;
                 sizeHelper(1000);
-                break;
-            case MEDIUM:
+            }
+            case MEDIUM -> {
                 this.difficulty = Difficulty.MEDIUM;
                 sizeHelper(750);
-                break;
-            default:
-            case EASY:
+            }
+            case EASY -> {
                 this.difficulty = Difficulty.EASY;
                 sizeHelper(500);
-                break;
+            }
         }
     }
 

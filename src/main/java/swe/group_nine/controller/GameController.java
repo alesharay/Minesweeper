@@ -21,9 +21,8 @@ import java.io.InputStream;
  * @author Timothy Wood
  */
 public class GameController extends AbstractController {
-    private GameModel model;
+    private final GameModel model;
     private TextField mineCount;
-    private ObservableList<Difficulty> diffOptions;
 
     public static Button reset;
     public static Timer timer;
@@ -34,7 +33,8 @@ public class GameController extends AbstractController {
      * @param difficulty the difficulty selection for the Minesweeper game
      */
     public GameController(Difficulty difficulty) {
-        diffOptions = FXCollections.observableArrayList(Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD);
+        ObservableList<Difficulty> diffOptions = FXCollections.observableArrayList(Difficulty.EASY, Difficulty.MEDIUM,
+        Difficulty.HARD);
         diffDropDown = new ComboBox(diffOptions);
         model = new GameModel(difficulty);
         reset = new Button("reset");
@@ -109,8 +109,8 @@ public class GameController extends AbstractController {
                             square.setText("MINE");
                             square.setStyle(
                                     "-fx-background-color: #fffbf2;" +
-                                            "-fx-text-fill: black;" +
-                                            "-fx-font-size: 10"
+                                    "-fx-text-fill: black;" +
+                                    "-fx-font-size: 10"
                             );
                             square.setDisable(true);
                         }

@@ -22,7 +22,7 @@ public class Minesweeper extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        Minesweeper.primaryStage = primaryStage;
         view = new GameView();
         view.show();
     }

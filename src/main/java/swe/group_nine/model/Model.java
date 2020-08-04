@@ -10,15 +10,11 @@ public interface Model {
 
     int getCols();
 
-    void setWIDTH(int WIDTH);
-
     int getWIDTH();
 
     void setHEIGHT(int HEIGHT);
 
     int getHEIGHT();
-
-    void setSQUARE_SIZE(int SQUARE_SIZE);
 
     int getSQUARE_SIZE();
 

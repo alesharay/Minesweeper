@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * @author Timothy Wood
  */
 public class Square extends Button {
-    private int locX;
-    private int locY;
+    private final int locX;
+    private final int locY;
     private int neighborMineCount;
     private boolean isMine;
     private boolean revealed;
@@ -44,7 +44,7 @@ public class Square extends Button {
         flagged = false;
         neighbors = new ArrayList<>();
         neighborMineCount = 0;
-        revealedCount = 0;
+        revealedCount = 1;
         setOnMouseClicked(this::reveal);
     }
 
@@ -97,10 +97,8 @@ public class Square extends Button {
      * @param e the primary or secondary input of the mouse
      */
     public void reveal(MouseEvent e) {
-        int gameSize = GameModel.grid.length*GameModel.grid.length;
-        if(revealedCount == (gameSize-GameModel.mineCount)) {
-            GameModel.gameOver(locX, locY);
-        }
+        int gameSize = (int)Math.pow(GameModel.grid.length, 2);
+        if(revealedCount == (gameSize-GameModel.mineCount)) { GameModel.gameOver(); }
 
         if (e.getButton() == MouseButton.PRIMARY) {
             revealed = true;
@@ -117,7 +115,8 @@ public class Square extends Button {
                     setDisable(true);
                     setOpacity(1);
                     GameModel.gameLost = true;
-                    GameModel.gameOver(locX, locY);
+                    GameController.showAllMines(locX, locY);
+                    GameModel.gameOver();
                 }
             } else if (neighborMineCount > 0) {
                 if(!flagged) {
@@ -190,6 +189,6 @@ public class Square extends Button {
         flagged = false;
         isMine = Math.random() < .2;
         neighborMineCount = 0;
-        revealedCount = 0;
+        revealedCount = 1;
     }
 }

@@ -19,9 +19,8 @@ import javafx.util.Duration;
  */
 public class Timer {
     private final Integer START = 0;
-    private Timeline timeline;
-    private TextField timerLabel;
-    private IntegerProperty timeInSeconds;
+    private final TextField timerLabel;
+    private final IntegerProperty timeInSeconds;
 
     /**
      * The constructor for the timer class
@@ -40,7 +39,7 @@ public class Timer {
     public void start() {
         timerLabel.textProperty().bind(timeInSeconds.asString());
         timeInSeconds.set(START);
-        timeline = new Timeline(); // create timeline object
+        Timeline timeline = new Timeline(); // create timeline object
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
                 new KeyValue(timeInSeconds, 3600))); //start and end values

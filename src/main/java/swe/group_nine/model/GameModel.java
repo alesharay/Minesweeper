@@ -104,19 +104,23 @@ public class GameModel extends AbstractModel {
     }
 
     /**
-     * Ends the game when either a mine is clicked or the game is won
-     * @param locX the X location for the current square
-     * @param locY the Y location for the current square
+     * Disables all squares for when the game is over
      */
-    public static void gameOver(int locX, int locY) {
-        gameOver = true;
+    public static void disableAllSquares() {
         for(Square[] row : GameModel.grid) {
             for (Square square : row) {
                 square.disable();
             }
         }
+    }
+
+    /**
+     * Ends the game when either a mine is clicked or the game is won
+     */
+    public static void gameOver() {
+        gameOver = true;
+        disableAllSquares();
         GameController.timer.stop();
         if(!gameLost) { gameWon = true; }
-        else { GameController.showAllMines(locX, locY); }
     }
 }
