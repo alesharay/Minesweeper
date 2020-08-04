@@ -6,11 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import swe.group_nine.Minesweeper;
 import swe.group_nine.controller.GameController;
+import swe.group_nine.model.Difficulty;
 import swe.group_nine.model.GameModel;
-
-import java.io.IOException;
 
 /**
  * The GameView class implements the logic allowing the Minesweeper game to be viewed properly.
@@ -20,15 +19,10 @@ import java.io.IOException;
  * @author Timothy Wood
  *
  */
-public class GameView {
-    private GameModel model;
-    private GameController controller;
-
-    private Stage primaryStage;
+public class GameView extends AbstractView {
     private boolean stageInitialized;
 
     private BorderPane borderPane;
-    private boolean borderPaneInitialized;
 
     private GridPane gridPane;
     private boolean gridPaneInitialized;
@@ -38,30 +32,45 @@ public class GameView {
 
     /**
      * Constructor for the GameView class
-     * @param primaryStage the stage to which all javafx components will be added
      */
-    public GameView(Stage primaryStage) {
-        // Parent root = FXMLLoader.load(getClass().getResource("/View.fxml"));
-        this.model = new GameModel();
-        this.controller = new GameController(this.model);
-        this.primaryStage = primaryStage;
+    public GameView() {
+        controller = new GameController(Difficulty.EASY);
+        model = controller.getModel();
 
-        this.gridPane = new GridPane();
-        this.gridPane.setAlignment(Pos.CENTER);
-        this.gridPaneInitialized = true;
+        controller.getDiffDropDown().setOnAction(e -> setDifficulty());
 
-        this.HBox = new HBox();
-        this.HBoxInitialized = true;
+        gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        gridPaneInitialized = true;
 
-        this.borderPane = new BorderPane();
-        this.borderPaneInitialized = true;
+        HBox = new HBox();
+        HBoxInitialized = true;
+
+        borderPane = new BorderPane();
         setBorderPane();
 
-        this.primaryStage = primaryStage;
-        this.stageInitialized = true;
-        setStage();
+        stageInitialized = true;
+        initStage();
     }
 
+    public void setDifficulty() {
+        Difficulty difficulty = controller.getDiffDropDown().getValue();
+
+        switch (difficulty) {
+            case HARD -> {
+                model.setDifficulty(Difficulty.HARD);
+                restart(Difficulty.HARD);
+            }
+            case MEDIUM -> {
+                model.setDifficulty(Difficulty.MEDIUM);
+                restart(Difficulty.MEDIUM);
+            }
+            default -> {
+                model.setDifficulty(Difficulty.EASY);
+                restart(Difficulty.EASY);
+            }
+        }
+    }
 
     /**
      * Sets the GridPane that the squares will be placed on
@@ -89,7 +98,8 @@ public class GameView {
         this.HBox.setSpacing(spacing);
         this.HBox.setStyle("-fx-background-color: #696969;");
 
-        HBox.getChildren().addAll(controller.getMineCount());
+        HBox.getChildren().addAll(controller.getMineCountField());
+        HBox.getChildren().addAll(controller.getDiffDropDown());
         HBox.getChildren().addAll(controller.getReset());
         HBox.getChildren().addAll(controller.getTimer());
     }
@@ -107,26 +117,44 @@ public class GameView {
     /**
      * Sets the primary stage for the Minesweeper Game
      */
-    public void setStage() {
+    public void initStage() {
         if( !stageInitialized ) { throw new IllegalStateException("Stage Not Initialized!"); }
         else if( !gridPaneInitialized ) { throw new IllegalStateException("GridPane Not Initialized!"); }
         else if( !HBoxInitialized) { throw new IllegalStateException("HBoxPane not Initialized!"); }
         else {
-            primaryStage.setTitle("Minesweeper");
-            primaryStage.setScene(new Scene(this.borderPane, model.getWIDTH(), model.getHEIGHT()));
+            Minesweeper.primaryStage.setTitle("Minesweeper");
+            Minesweeper.primaryStage.setScene(new Scene(this.borderPane, model.getWIDTH(), model.getHEIGHT()));
         }
     }
 
     /**
-     * Gets the GameController for the current instance of the Minesweeper Game
-     * @return the controller for the current instance of the Minesweeper game
-     */
-    public GameController getController() { return controller; }
-
-    /**
      * Show the primary stage of the Minesweeper Game
      */
+    @Override
     public void show() {
-        primaryStage.show();
+        Minesweeper.primaryStage.show();
+    }
+
+    /**
+     * Restarts the game based on the difficulty chosen
+     * @param difficulty the difficult (Easy, Medium, Hard) of the Minesweeper game
+     */
+    public void restart(Difficulty difficulty) {
+        controller = new GameController(difficulty);
+        model = controller.getModel();
+        controller.getDiffDropDown().setOnAction(e -> setDifficulty());
+
+        this.gridPane = new GridPane();
+        this.gridPane.setAlignment(Pos.CENTER);
+        this.gridPaneInitialized = true;
+
+        this.HBox = new HBox();
+        this.HBoxInitialized = true;
+
+        this.borderPane = new BorderPane();
+        setBorderPane();
+
+        this.stageInitialized = true;
+        initStage();
     }
 }

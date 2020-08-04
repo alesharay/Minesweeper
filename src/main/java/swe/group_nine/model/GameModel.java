@@ -1,11 +1,8 @@
 package swe.group_nine.model;
 
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import swe.group_nine.controller.GameController;
 import swe.group_nine.controller.Square;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,24 +14,21 @@ import java.util.ArrayList;
  *
  */
 public class GameModel extends AbstractModel {
-    private int WIDTH;
-    private int HEIGHT;
-    private int rows;
-    private int cols;
-    private int SQUARE_SIZE;
-    private Difficulty difficulty;
-    private int mineCount;
-
     public static Square[][] grid;
+    public static int mineCount;
     public static int disabledSquareCount;
     public static boolean gameOver;
     public static boolean gameWon;
     public static boolean gameLost;
+    public static Difficulty difficulty;
 
-    public GameModel() {
+    /**
+     * Constructor of the GameModel class
+     * @param difficulty the difficulty selection of the Minesweeper game
+     */
+    public GameModel(Difficulty difficulty) {
         SQUARE_SIZE = 50;
-        WIDTH = 500;
-        HEIGHT = 500;
+        setDifficulty(difficulty);
         rows = WIDTH / SQUARE_SIZE;
         cols = HEIGHT / SQUARE_SIZE;
         mineCount = 0;
@@ -48,19 +42,23 @@ public class GameModel extends AbstractModel {
         getNeighbors();
     }
 
-    public void setDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
-
+    /**
+     * Sets up the grid for the game and assigns the amount of mines on the board
+     */
     public void setGrid() {
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
                 boolean isMine = Math.random() <.2;
                 grid[x][y] = new Square(x, y, isMine);
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
-                if( isMine ) mineCount++;
+                if(isMine) mineCount++;
             }
         }
     }
 
+    /**
+     * Gets all the neighbors adjacent to the square in a 3X3 area
+     */
     public void getNeighbors() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -85,25 +83,35 @@ public class GameModel extends AbstractModel {
         }
     }
 
+    /**
+     * Returns true if the grid has values; otherwise, false if the grid is null
+     * @return true if the grid has values; otherwise, false if the grid is null
+     */
     public boolean gridIsSet() { return grid != null; }
 
-    public int getRows() { return this.rows; }
-
-    public int getCols() { return this.cols; }
-
-    public int getWIDTH() { return this.WIDTH; }
-
-    public int getHEIGHT() { return  this.HEIGHT; }
-
-    public int getMineCount(){ return this.mineCount; }
-
-    public void reset() throws IOException {
+    /**
+     * Resets the entire grid/game when called
+     */
+    public void reset() {
+        mineCount = 0;
         for(Square[] row : grid) {
             for(Square square : row) {
                 square.reset();
+                if(square.hasMine()) { mineCount++; }
             }
         }
         getNeighbors();
+    }
+
+    /**
+     * Disables all squares for when the game is over
+     */
+    public static void disableAllSquares() {
+        for(Square[] row : GameModel.grid) {
+            for (Square square : row) {
+                square.disable();
+            }
+        }
     }
 
     /**
@@ -111,13 +119,8 @@ public class GameModel extends AbstractModel {
      */
     public static void gameOver() {
         gameOver = true;
+        disableAllSquares();
         GameController.timer.stop();
-        for(Square[] row : GameModel.grid) {
-            for (Square square : row) {
-                square.disable();
-            }
-        }
-
         if(!gameLost) { gameWon = true; }
     }
 }

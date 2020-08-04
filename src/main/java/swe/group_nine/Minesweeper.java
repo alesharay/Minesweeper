@@ -18,9 +18,12 @@ public class Minesweeper extends Application {
     public GameController controller;
     public GameView view;
 
+    public static Stage primaryStage;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        view = new GameView( primaryStage );
+    public void start(Stage primaryStage) {
+        Minesweeper.primaryStage = primaryStage;
+        view = new GameView();
         view.show();
     }
 
