@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"Minesweeper","l":"swe.group_nine"},{"m":"Minesweeper","l":"swe.group_nine.controller"},{"m":"Minesweeper","l":"swe.group_nine.model"},{"m":"Minesweeper","l":"swe.group_nine.view"}]
