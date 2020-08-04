@@ -75,6 +75,10 @@ public abstract class AbstractModel implements Model {
     @Override
     public int getSQUARE_SIZE() { return this.SQUARE_SIZE; }
 
+    /**
+     * Helper method to set the WIDTH, HEIGHT, number of rows, and number of columns
+     * @param WIDTH_HEIGHT the WIDTH and HEIGHT of the Minesweeper game
+     */
     public void sizeHelper(int WIDTH_HEIGHT) {
         WIDTH = WIDTH_HEIGHT;
         HEIGHT = WIDTH_HEIGHT;

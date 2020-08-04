@@ -46,6 +46,7 @@ public class GameController extends AbstractController {
      */
     public ComboBox<Difficulty> getDiffDropDown() {
 
+        diffDropDown.setPrefSize(100, 20);
         return diffDropDown;
     }
 

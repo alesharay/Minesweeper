@@ -110,9 +110,9 @@ public class Square extends Button {
                 if(!flagged) {
                     setText("MINE");
                     setStyle(
-                            "-fx-background-color: red; " +
-                            "-fx-text-fill: white;" +
-                            "-fx-font-size: 10"
+                        "-fx-background-color: red; " +
+                        "-fx-text-fill: white;" +
+                        "-fx-font-size: 10"
                     );
                     setDisable(true);
                     setOpacity(1);
@@ -123,10 +123,10 @@ public class Square extends Button {
                 if(!flagged) {
                     setText(String.valueOf(neighborMineCount));
                     setStyle(
-                            "-fx-background-color: #fffbf2;" +
-                            "-fx-border-color: #e6e6e6;" +
-                            "-fx-border-width: .5 .5 .5 .5;" +
-                            "-fx-text-fill: black"
+                        "-fx-background-color: #fffbf2;" +
+                        "-fx-border-color: #e6e6e6;" +
+                        "-fx-border-width: .5 .5 .5 .5;" +
+                        "-fx-text-fill: black"
                     );
                     setDisable(true);
                     setOpacity(1);
@@ -134,9 +134,9 @@ public class Square extends Button {
             } else if (neighborMineCount == 0) {
                 if(!flagged) {
                     setStyle(
-                            "-fx-background-color: #fffbf2;" +
-                            "-fx-border-color: #e6e6e6;" +
-                            "-fx-border-width: .5 .5 .5 .5"
+                        "-fx-background-color: #fffbf2;" +
+                        "-fx-border-color: #e6e6e6;" +
+                        "-fx-border-width: .5 .5 .5 .5"
                     );
                     setDisable(true);
                     setOpacity(1);
