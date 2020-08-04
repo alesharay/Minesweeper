@@ -1,6 +1,5 @@
 package swe.group_nine.view;
 
-import javafx.stage.Stage;
 import swe.group_nine.controller.GameController;
 import swe.group_nine.model.GameModel;
 
@@ -15,8 +14,8 @@ public interface View {
     void setController(GameController controller);
     GameController getController();
 
-    void setStage(Stage primaryStage);
-    Stage getStage();
+//    void setStage(Stage primaryStage);
+//    Stage getStage();
 
     void show();
 }

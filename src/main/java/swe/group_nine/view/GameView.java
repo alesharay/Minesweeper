@@ -6,8 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import swe.group_nine.Minesweeper;
 import swe.group_nine.controller.GameController;
+import swe.group_nine.model.Difficulty;
 import swe.group_nine.model.GameModel;
 
 /**
@@ -18,11 +19,7 @@ import swe.group_nine.model.GameModel;
  * @author Timothy Wood
  *
  */
-public class GameView implements View {
-    private GameModel model;
-    private GameController controller;
-
-    private Stage primaryStage;
+public class GameView extends AbstractView {
     private boolean stageInitialized;
 
     private BorderPane borderPane;
@@ -35,26 +32,45 @@ public class GameView implements View {
 
     /**
      * Constructor for the GameView class
-     * @param primaryStage the stage to which all javafx components will be added
      */
-    public GameView(Stage primaryStage) {
-        this.controller = new GameController();
-        this.model = controller.getModel();
-        this.primaryStage = primaryStage;
+    public GameView() {
+        controller = new GameController(Difficulty.EASY);
+        model = controller.getModel();
 
-        this.gridPane = new GridPane();
-        this.gridPane.setAlignment(Pos.CENTER);
-        this.gridPaneInitialized = true;
+        controller.getDiffDropDown().setOnAction(e -> setDifficutly());
 
-        this.HBox = new HBox();
-        this.HBoxInitialized = true;
+        gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        gridPaneInitialized = true;
 
-        this.borderPane = new BorderPane();
+        HBox = new HBox();
+        HBoxInitialized = true;
+
+        borderPane = new BorderPane();
         setBorderPane();
 
-        this.primaryStage = primaryStage;
-        this.stageInitialized = true;
+        stageInitialized = true;
         initStage();
+    }
+
+    public void setDifficutly() {
+        Difficulty difficulty = controller.getDiffDropDown().getValue();
+
+        switch(difficulty) {
+            case HARD:
+                model.setDifficulty(Difficulty.HARD);
+                restart(Difficulty.HARD);
+                break;
+            case MEDIUM:
+                model.setDifficulty(Difficulty.MEDIUM);
+                restart(Difficulty.MEDIUM);
+                break;
+            case EASY:
+            default:
+                model.setDifficulty(Difficulty.EASY);
+                restart(Difficulty.EASY);
+                break;
+        }
     }
 
     /**
@@ -107,8 +123,8 @@ public class GameView implements View {
         else if( !gridPaneInitialized ) { throw new IllegalStateException("GridPane Not Initialized!"); }
         else if( !HBoxInitialized) { throw new IllegalStateException("HBoxPane not Initialized!"); }
         else {
-            primaryStage.setTitle("Minesweeper");
-            primaryStage.setScene(new Scene(this.borderPane, model.getWIDTH(), model.getHEIGHT()));
+            Minesweeper.primaryStage.setTitle("Minesweeper");
+            Minesweeper.primaryStage.setScene(new Scene(this.borderPane, model.getWIDTH(), model.getHEIGHT()));
         }
     }
 
@@ -117,48 +133,29 @@ public class GameView implements View {
      */
     @Override
     public void show() {
-        primaryStage.show();
+        Minesweeper.primaryStage.show();
     }
 
     /**
-     * Sets the primary stage for the current instance of the Minesweeper game
-     * @param primaryStage the primary stage for the current instance of the Minesweeper game
+     * Restarts the game based on the difficulty chosen
+     * @param difficulty the difficult (Easy, Medium, Hard) of the Minesweeper game
      */
-    @Override
-    public void setStage(Stage primaryStage) { this.primaryStage = primaryStage; }
+    public void restart(Difficulty difficulty) {
+        controller = new GameController(difficulty);
+        model = controller.getModel();
+        controller.getDiffDropDown().setOnAction(e -> setDifficutly());
 
-    /**
-     * Returns the primary stage for the current instance of the Minesweeper game
-     * @return the primary stage for the current instance of the Minesweeper game
-     */
-    @Override
-    public Stage getStage() { return primaryStage; }
+        this.gridPane = new GridPane();
+        this.gridPane.setAlignment(Pos.CENTER);
+        this.gridPaneInitialized = true;
 
-    /**
-     * Sets the model for the current instance of the Minesweeper game
-     * @param model the model for the current instance of the Minesweeper game
-     */
-    @Override
-    public void setModel(GameModel model) { this.model = model; }
+        this.HBox = new HBox();
+        this.HBoxInitialized = true;
 
-    /**
-     * Gets the model for the current instance of the Minesweeper game
-     * @return the model for the current instance of the Minesweeper game
-     */
-    @Override
-    public GameModel getModel() { return model; }
+        this.borderPane = new BorderPane();
+        setBorderPane();
 
-    /**
-     * Sets the controller for the current instance of the Minesweeper game
-     * @param controller the controller for the current instance of the Minesweeper game
-     */
-    @Override
-    public void setController(GameController controller) { this.controller = controller; }
-
-    /**
-     * Gets the controller for the current instance of the Minesweeper game
-     * @return the controller for the current instance of the Minesweeper game
-     */
-    @Override
-    public GameController getController() { return controller; }
+        this.stageInitialized = true;
+        initStage();
+    }
 }

@@ -15,12 +15,15 @@ import swe.group_nine.view.GameView;
  * @since  2020-07-16
  */
 public class Minesweeper extends Application {
+    public static Stage primaryStage;
+
     public GameController controller;
     public GameView view;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        view = new GameView( primaryStage );
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        view = new GameView();
         view.show();
     }
 

@@ -1,6 +1,8 @@
 package swe.group_nine.model;
 
-public class AbstractModel implements Model {
+import swe.group_nine.controller.Square;
+
+public abstract class AbstractModel implements Model {
     int WIDTH;
     int HEIGHT;
     int rows;
@@ -73,6 +75,14 @@ public class AbstractModel implements Model {
     @Override
     public int getSQUARE_SIZE() { return this.SQUARE_SIZE; }
 
+    public void sizeHelper(int WIDTH_HEIGHT) {
+        WIDTH = WIDTH_HEIGHT;
+        HEIGHT = WIDTH_HEIGHT;
+        rows = WIDTH / SQUARE_SIZE;
+        cols = HEIGHT / SQUARE_SIZE;
+        GameModel.grid = new Square[rows][cols];
+    }
+
     /**
      * Sets the difficulty of the Minesweeper game
      * @param difficulty the difficulty of the minesweeper game
@@ -82,18 +92,18 @@ public class AbstractModel implements Model {
         if(difficulty == null) { difficulty = Difficulty.EASY; }
 
         switch (difficulty) {
-            case MEDIUM:
-                WIDTH = 750;
-                HEIGHT = 750;
-                break;
             case HARD:
-                WIDTH = 1000;
-                HEIGHT = 1000;
+                this.difficulty = Difficulty.HARD;
+                sizeHelper(1000);
+                break;
+            case MEDIUM:
+                this.difficulty = Difficulty.MEDIUM;
+                sizeHelper(750);
                 break;
             default:
             case EASY:
-                WIDTH = 500;
-                HEIGHT = 500;
+                this.difficulty = Difficulty.EASY;
+                sizeHelper(500);
                 break;
         }
     }

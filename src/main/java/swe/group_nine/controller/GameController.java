@@ -27,44 +27,25 @@ public class GameController extends AbstractController {
 
     public static Button reset;
     public static Timer timer;
-    public static ComboBox diffDropDown;
+    public static ComboBox<Difficulty> diffDropDown;
 
     /**
      * Constructor for the GameController class
      */
-    public GameController() {
-        this.model = new GameModel();
-
-        reset = new Button("reset");
-        mineCount = new TextField();
-
+    public GameController(Difficulty difficulty) {
         diffOptions = FXCollections.observableArrayList(Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD);
         diffDropDown = new ComboBox(diffOptions);
-    }
-
-    // private helper method to set the difficulty from the drop down
-    private void setDiffHelper() {
-        switch ((Difficulty)diffDropDown.getValue()) {
-            case EASY:
-                model.setDifficulty(Difficulty.EASY);
-                break;
-            case MEDIUM:
-                model.setDifficulty(Difficulty.MEDIUM);
-                break;
-            case HARD:
-                model.setDifficulty(Difficulty.HARD);
-                break;
-        }
+        model = new GameModel(difficulty);
+        reset = new Button("reset");
+        mineCount = new TextField();
     }
 
     /**
      * Returns the difficulty drop down selection
      * @return the difficulty drop down selection
      */
-    public ComboBox getDiffDropDown() {
-        diffDropDown.setOnAction(e -> {
-            setDiffHelper();
-        });
+    public ComboBox<Difficulty> getDiffDropDown() {
+
         return diffDropDown;
     }
 
@@ -82,7 +63,7 @@ public class GameController extends AbstractController {
         reset.setOnAction(e -> {
           timer.start();
           model.reset();
-          mineCount.setText(String.valueOf(model.mineCount));
+          mineCount.setText(String.valueOf(GameModel.mineCount));
         });
         return reset;
   }
@@ -93,7 +74,7 @@ public class GameController extends AbstractController {
      */
     public TextField getMineCountField() {
       mineCount = new TextField();
-      mineCount.setText(String.valueOf(model.mineCount));
+      mineCount.setText(String.valueOf(GameModel.mineCount));
       mineCount.setAlignment(Pos.CENTER);
       mineCount.setEditable(false);
       mineCount.setPrefSize(100, 20);

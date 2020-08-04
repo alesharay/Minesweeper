@@ -20,11 +20,12 @@ public class GameModel extends AbstractModel {
     public static boolean gameOver;
     public static boolean gameWon;
     public static boolean gameLost;
+    public static Difficulty difficulty;
 
     /**
      * Constructor of the GameModel class
      */
-    public GameModel() {
+    public GameModel(Difficulty difficulty) {
         SQUARE_SIZE = 50;
         setDifficulty(difficulty);
         rows = WIDTH / SQUARE_SIZE;
@@ -49,7 +50,7 @@ public class GameModel extends AbstractModel {
                 boolean isMine = Math.random() <.2;
                 grid[x][y] = new Square(x, y, isMine);
                 grid[x][y].setPrefSize(SQUARE_SIZE, SQUARE_SIZE);
-                if( isMine ) mineCount++;
+                if(isMine) mineCount++;
             }
         }
     }
