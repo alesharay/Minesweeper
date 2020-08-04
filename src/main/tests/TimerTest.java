@@ -1,9 +1,8 @@
-package swe.group_nine.controller;
-
 import javafx.application.Platform;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import swe.group_nine.controller.Timer;
 
 import static org.junit.Assert.*;
 

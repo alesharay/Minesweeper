@@ -1,9 +1,10 @@
-package swe.group_nine.controller;
-
 import javafx.application.Platform;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import swe.group_nine.controller.Square;
 
 
 import java.util.ArrayList;
