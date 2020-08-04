@@ -1,0 +1,5 @@
+module:Minesweeper
+swe.group_nine
+swe.group_nine.controller
+swe.group_nine.model
+swe.group_nine.view

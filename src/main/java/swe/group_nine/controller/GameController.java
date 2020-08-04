@@ -31,6 +31,7 @@ public class GameController extends AbstractController {
 
     /**
      * Constructor for the GameController class
+     * @param difficulty the difficulty selection for the Minesweeper game
      */
     public GameController(Difficulty difficulty) {
         diffOptions = FXCollections.observableArrayList(Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD);

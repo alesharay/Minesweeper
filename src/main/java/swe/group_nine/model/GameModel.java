@@ -24,6 +24,7 @@ public class GameModel extends AbstractModel {
 
     /**
      * Constructor of the GameModel class
+     * @param difficulty the difficulty selection of the Minesweeper game
      */
     public GameModel(Difficulty difficulty) {
         SQUARE_SIZE = 50;
@@ -104,6 +105,8 @@ public class GameModel extends AbstractModel {
 
     /**
      * Ends the game when either a mine is clicked or the game is won
+     * @param locX the X location for the current square
+     * @param locY the Y location for the current square
      */
     public static void gameOver(int locX, int locY) {
         gameOver = true;
