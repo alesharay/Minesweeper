@@ -63,6 +63,14 @@ public class Square extends Button {
     }
 
     /**
+     * Returns the number of neighbors that contain mines
+     * @return the number of neighbors that contain mines
+     */
+    public int getNeighborMineCount() {
+        return neighborMineCount;
+    }
+
+    /**
      * Returns the location of the square
      * @return the location of the square
      */
