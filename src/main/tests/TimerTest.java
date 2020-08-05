@@ -39,6 +39,7 @@ public class TimerTest {
 
     @Test
     public void getTimeline() {
+        timer.start();
         assertNotNull(timer.getTimeline());
     }
 

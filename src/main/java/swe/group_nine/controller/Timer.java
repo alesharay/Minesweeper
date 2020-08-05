@@ -32,8 +32,6 @@ public class Timer {
         timerLabel = new TextField();
         timerLabel.setPrefSize(100, 20);
         timerLabel.setAlignment(Pos.CENTER);
-
-        timeline = new Timeline();
     }
 
     /**
