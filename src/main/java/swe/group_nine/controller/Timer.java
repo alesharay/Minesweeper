@@ -21,6 +21,7 @@ public class Timer {
     private final Integer START = 0;
     private final TextField timerLabel;
     private final IntegerProperty timeInSeconds;
+    private Timeline timeline;
 
     /**
      * The constructor for the timer class
@@ -31,6 +32,8 @@ public class Timer {
         timerLabel = new TextField();
         timerLabel.setPrefSize(100, 20);
         timerLabel.setAlignment(Pos.CENTER);
+
+        timeline = new Timeline();
     }
 
     /**
@@ -39,7 +42,7 @@ public class Timer {
     public void start() {
         timerLabel.textProperty().bind(timeInSeconds.asString());
         timeInSeconds.set(START);
-        Timeline timeline = new Timeline(); // create timeline object
+        timeline = new Timeline(); // create timeline object
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
                 new KeyValue(timeInSeconds, 3600))); //start and end values
@@ -48,17 +51,32 @@ public class Timer {
 
     /**
      * Returns the label for the timer text field
-     * @return the label for the time text field
+     * @return the label for the timer text field
      */
     public TextField getTimerLabel() {
         return timerLabel; //return the label
     }
 
     /**
+     * Returns the timeline object of the Timer object
+     * @return the timeline object of the Timer object
+     */
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
+    /**
+     * Returns the timeInSeconds object of the Timer object
+     * @return the timeInSeconds object of the Timer object
+     */
+    public IntegerProperty getTimeInSeconds() {
+        return timeInSeconds;
+    }
+
+    /**
      * Stops the timer when then game is completed
      */
     public void stop() {
-        timerLabel.textProperty().unbind();
-        timerLabel.setText(timeInSeconds.getValue().toString());
+       timeline.stop();
     }
 }

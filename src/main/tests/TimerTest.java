@@ -1,4 +1,9 @@
+import javafx.animation.Animation;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.util.Duration;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +26,10 @@ public class TimerTest {
 
     @Test
     public void start() {
+        timer.start();
+        assertTrue(timer.getTimerLabel().textProperty().isBound());
+        assertNotNull(timer.getTimeline());
+        assertEquals(Animation.Status.RUNNING, timer.getTimeline().getStatus());
     }
 
     @Test
@@ -29,6 +38,19 @@ public class TimerTest {
     }
 
     @Test
+    public void getTimeline() {
+        assertNotNull(timer.getTimeline());
+    }
+
+    @Test
+    public void getTimeInSeconds() {
+        assertNotNull(timer.getTimeInSeconds());
+    }
+
+    @Test
     public void stop() {
+        timer.start();
+        timer.stop();
+        assertEquals(Animation.Status.STOPPED, timer.getTimeline().getStatus());
     }
 }
