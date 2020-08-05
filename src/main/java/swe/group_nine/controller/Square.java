@@ -63,6 +63,14 @@ public class Square extends Button {
     }
 
     /**
+     * Returns an array list of neighbors nearby the square
+     * @return an array list of neighbors nearby the square
+     */
+    public ArrayList<Square> getNeighbors() {
+        return neighbors;
+    }
+
+    /**
      * Returns the number of neighbors that contain mines
      * @return the number of neighbors that contain mines
      */

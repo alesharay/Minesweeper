@@ -34,7 +34,11 @@ public class SquareTest {
     public void setNeighbors() {
         square.setNeighbors(neighbors);
         assertEquals(1, square.getNeighborMineCount());
+    }
 
+    @Test
+    public void getNeighbors() {
+        assertNotNull(square.getNeighbors());
     }
 
     @Test

@@ -8,11 +8,14 @@ import swe.group_nine.controller.Square;
 import swe.group_nine.model.Difficulty;
 import swe.group_nine.model.GameModel;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class GameModelTest {
     GameModel model;
     GameController controller;
+    ArrayList<Square> neighbors = new ArrayList<>();
 
     @BeforeClass
     public static void setUpBeforeClass() {
@@ -26,10 +29,15 @@ public class GameModelTest {
 
     @Test
     public void setGrid() {
+        model.setGrid();
+        assertNotEquals(0, model.mineCount);
     }
 
     @Test
     public void getNeighbors() {
+        model.getNeighbors();
+        Square square = model.grid[2][2];
+        assertNotNull(square.getNeighbors());
     }
 
     @Test
@@ -39,7 +47,9 @@ public class GameModelTest {
 
     @Test
     public void reset() {
+        int mineCountBefore = model.mineCount;
         model.reset();
+        assertNotEquals(mineCountBefore, model.mineCount);
     }
 
     @Test
