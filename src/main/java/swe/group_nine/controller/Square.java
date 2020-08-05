@@ -93,6 +93,12 @@ public class Square extends Button {
     public boolean isFlagged() { return flagged; }
 
     /**
+     * Returns the neighbor mine count for the current square
+     * @return the neighbor mine count for the current square
+     */
+    public int getNeighborMineCount() { return neighborMineCount; }
+
+    /**
      * Receives the mouse input to reveal the square or set a flag to it
      * @param e the primary or secondary input of the mouse
      */

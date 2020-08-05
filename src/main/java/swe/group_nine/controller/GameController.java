@@ -108,9 +108,9 @@ public class GameController extends AbstractController {
                         if (!gameLosingSquare) {
                             square.setText("MINE");
                             square.setStyle(
-                                    "-fx-background-color: #fffbf2;" +
-                                    "-fx-text-fill: black;" +
-                                    "-fx-font-size: 10"
+                              "-fx-background-color: #fffbf2;" +
+                              "-fx-text-fill: black;" +
+                              "-fx-font-size: 10"
                             );
                             square.setDisable(true);
                         }
@@ -119,9 +119,9 @@ public class GameController extends AbstractController {
                     square.setGraphic(null);
                     square.setText("X");
                     square.setStyle(
-                            "-fx-text-size: 10;" +
-                            "-fx-text-fill: red;" +
-                            "-fx-text-bold: true"
+                      "-fx-text-size: 10;" +
+                      "-fx-text-fill: red;" +
+                      "-fx-text-bold: true"
                     );
                     square.setDisable(true);
                 }
@@ -129,6 +129,10 @@ public class GameController extends AbstractController {
         }
     }
 
+    /**
+     * Returns the private model in the class
+     * @return the private model in the class
+     */
     @Override
     public GameModel getModel() { return model; }
 }
