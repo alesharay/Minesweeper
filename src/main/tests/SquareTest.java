@@ -1,6 +1,4 @@
 import javafx.application.Platform;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -86,15 +84,18 @@ public class SquareTest {
     public void disable() {
         square.disable();
         assertTrue(square.isDisabled());
+        assertEquals(1, square.getOpacity(), 0.0);
     }
 
     @Test
     public void reset() {
+        square.reset();
         assertEquals("", square.getText());
         assertEquals("", square.getStyle());
         assertEquals(null, square.getGraphic());
         assertEquals(false, square.isDisabled());
         assertEquals(false, square.isRevealed());
         assertEquals(false, square.isFlagged());
+        assertEquals(0, square.getNeighborMineCount());
     }
 }
