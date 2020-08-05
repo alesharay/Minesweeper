@@ -21,7 +21,7 @@ public class GameControllerTest {
   public void setUp() { controller = new GameController(Difficulty.EASY); }
 
   @Test
-  public void getDiffDropDown() {
+  public void getDiffDropDownTest() {
     ObservableList<Difficulty> list = controller.getDiffDropDown().getItems();
     for (int i = 0; i < list.size(); i++) {
       if (i == 0) { assertEquals(Difficulty.EASY, list.get(i)); }
@@ -35,13 +35,13 @@ public class GameControllerTest {
   }
 
   @Test
-  public void getReset() {
+  public void getResetTest() {
     assertNotNull(controller.getReset());
     assertNotNull(controller.getReset().getGraphic());
   }
 
   @Test
-  public void getMineCountField() {
+  public void getMineCountFieldTest() {
     assertNotNull(controller.getMineCountField());
     assertEquals(String.valueOf(GameModel.mineCount), controller.getMineCountField().getText());
     assertEquals(Pos.CENTER, controller.getMineCountField().getAlignment());
@@ -51,13 +51,13 @@ public class GameControllerTest {
   }
 
   @Test
-  public void getTimer() {
+  public void getTimerTest() {
     assertNotNull(controller.getTimer());
     assertNotNull(GameController.timer);
   }
 
   @Test
-  public void showAllMines() {
+  public void showAllMinesTest() {
     GameController.showAllMines(1,1);
     for(Square[] row : GameModel.grid) {
       for (Square square : row) {
@@ -80,7 +80,7 @@ public class GameControllerTest {
   }
 
   @Test
-  public void getModel() {
+  public void getModelTest() {
     assertNotNull(controller.getModel());
   }
 }

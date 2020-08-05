@@ -23,15 +23,15 @@ public class GameModelTest {
   public void setUp() { model = new GameModel(Difficulty.EASY); }
 
   @Test
-  public void gridIsSet() { assertTrue(model.gridIsSet()); }
+  public void gridIsSetTest() { assertTrue(model.gridIsSet()); }
 
   @Test
-  public void reset() {
+  public void resetTest() {
     model.reset();
   }
 
   @Test
-  public void disableAllSquares() {
+  public void disableAllSquaresTest() {
     model.disableAllSquares();
     for(Square[] row : GameModel.grid) {
       for (Square square : row) { assertTrue(square.isDisabled()); }
@@ -39,7 +39,7 @@ public class GameModelTest {
   }
 
   @Test
-  public void gameOver() {
+  public void gameOverTest() {
     controller = new GameController(Difficulty.EASY);
     controller.getTimer();
     GameModel.gameLost = true;

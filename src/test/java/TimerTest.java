@@ -25,16 +25,16 @@ public class TimerTest {
   }
 
   @Test
-  public void getTimerLabel() { assertNotNull(timer.getTimerLabel()); }
+  public void getTimerLabelTest() { assertNotNull(timer.getTimerLabel()); }
 
   @Test
-  public void getTimeline() { assertNotNull(timer.getTimeline()); }
+  public void getTimelineTest() { assertNotNull(timer.getTimeline()); }
 
   @Test
-  public void getTimeInSeconds() { assertNotNull(timer.getTimeInSeconds()); }
+  public void getTimeInSecondsTest() { assertNotNull(timer.getTimeInSeconds()); }
 
   @Test
-  public void stop() {
+  public void stopTest() {
     timer.start();
     timer.stop();
     assertEquals(Animation.Status.STOPPED, timer.getTimeline().getStatus());

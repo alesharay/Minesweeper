@@ -27,13 +27,13 @@ public class SquareTest {
   }
 
   @Test
-  public void setNeighbors() {
+  public void setNeighborsTest() {
     square.setNeighbors(neighbors);
     assertEquals(1, square.getNeighborMineCount());
   }
 
   @Test
-  public void getLocation() {
+  public void getLocationTest() {
     int[] loc = square.getLocation();
     for (int i: loc) { assertEquals(1, i); }
 
@@ -45,27 +45,27 @@ public class SquareTest {
   }
 
   @Test
-  public void hasMine() {
+  public void hasMineTest() {
     assertTrue(square.hasMine());
     assertFalse(square2.hasMine());
     assertTrue(square3.hasMine());
   }
 
   @Test
-  public void isRevealed() { assertFalse(square.isRevealed()); }
+  public void isRevealedTest() { assertFalse(square.isRevealed()); }
 
   @Test
-  public void isFlagged() { assertFalse(square.isFlagged()); }
+  public void isFlaggedTest() { assertFalse(square.isFlagged()); }
 
   @Test
-  public void disable() {
+  public void disableTest() {
     square.disable();
     assertTrue(square.isDisabled());
     assertEquals(1, square.getOpacity(), 0.0);
   }
 
   @Test
-  public void reset() {
+  public void resetTest() {
     square.reset();
     assertEquals("", square.getText());
     assertEquals("", square.getStyle());
