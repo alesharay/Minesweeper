@@ -32,8 +32,6 @@ public class Timer {
         timerLabel = new TextField();
         timerLabel.setPrefSize(100, 20);
         timerLabel.setAlignment(Pos.CENTER);
-
-        timeline = new Timeline();
     }
 
     /**
@@ -44,8 +42,8 @@ public class Timer {
         timeInSeconds.set(START);
         timeline = new Timeline(); // create timeline object
         timeline.getKeyFrames().add(
-          new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
-            new KeyValue(timeInSeconds, 3600))); //start and end values
+                new KeyFrame(Duration.seconds(3600), //total time of animation (1 hour in seconds)
+                new KeyValue(timeInSeconds, 3600))); //start and end values
         timeline.playFromStart(); // start animation
     }
 
